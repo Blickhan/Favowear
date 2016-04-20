@@ -1,28 +1,22 @@
-== README
+# Test app README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+_______________________Starting up___________________________
+// Download rails package from railsinstaller.org
+$ gem install rails
+$ mkdir workspace
+$ cd workspace
+$ rails new <app_name>
+$ cd <app_name>
+$ git config --global user.name "Your Name"
+$ git config --global user.email your.email@example.com
+$ git config --global push.default matching
+$ git config --global alias.co checkout
+$ git init
+$ git add -A
+$ git commit -m "initial commit"
+// sign up for a Bitbucket.org account
+// copy machine's public key ($ cat ~/.ssh/id_rsa.pub)
+// add public key to Bitbucket by Managing Account and then going to SSH keys
+// create a new repository on Bitbucket
+$ git remote add origin git@bitbucket.org:<username>/<repo_name>.git 
+$ git push -u origin --all # pushes up the repo and its refs for the first time
