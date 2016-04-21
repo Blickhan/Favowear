@@ -8,7 +8,7 @@ class UserTest < ActiveSupport::TestCase
 	end
 
 	test "invalid usernames" do
-		invalid_usernames = "A AAAAAAAA", "a%aaaaaaaa", "a" * 21, "a" * 5, " " * 8
+		invalid_usernames = "A AAAAAAAA", "a%aaaaaaaa", "a" * 21, "a", " " * 8
 		invalid_usernames.each do |invalid_username|
 			@user.username = invalid_username
 			assert_not @user.valid?
