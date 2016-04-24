@@ -54,8 +54,7 @@ $ git push heroku master
 // rename to <app_name>.herokuapp.com using ($ heroku rename <app_name>)
 
 
-# Push existing git repo to existing 
-heroku app
+# Push existing git repo to existing heroku app
 
 $ heroku git:remote -a <heroku app name> 
 
