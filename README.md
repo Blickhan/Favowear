@@ -1,4 +1,4 @@
-_______________________Starting up___________________________
+# Starting up
 
 // Download rails package from railsinstaller.org
 
