@@ -1,6 +1,4 @@
-# Test app README
-
-_______________________Starting up___________________________
+# Starting up
 
 // Download rails package from railsinstaller.org
 
@@ -39,3 +37,39 @@ $ git commit -m "initial commit"
 $ git remote add origin git@bitbucket.org:<username>/<repo_name>.git 
 
 $ git push -u origin --all # pushes up the repo and its refs for the first time
+
+// install heroku cli at https://toolbelt.heroku.com/
+
+$ heroku version
+
+$ heroku login
+
+$ heroku keys:add // add public ssh key // to generate a key ($ ssh-keygen -t 
+rsa)
+
+$ heroku create
+
+$ git push heroku master
+
+// rename to <app_name>.herokuapp.com using ($ heroku rename <app_name>)
+
+
+# Push existing git repo to existing heroku app
+
+$ heroku git:remote -a <heroku app name> 
+
+
+
+# For illustration only; don't do this unless you mess up a branch
+
+$ git checkout -b topic-branch
+
+$ <really screw up the branch>
+
+$ git add -A
+
+$ git commit -a -m "Major screw up"
+
+$ git checkout master
+
+$ git branch -D topic-branch
