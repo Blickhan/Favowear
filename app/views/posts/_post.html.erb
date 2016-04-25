@@ -1,0 +1,12 @@
+<li id="post-<%= post.id %>" class="col-md-3">
+  
+  <div class="image_link"><%= image_tag(full_url(post.image_link)) %></div>
+  <span class="buy_link"><%= link_to "Visit website", full_url(post.buy_link), target: '_blank' %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(post.created_at) %> ago by <span class="user"><%= link_to post.user.username, post.user %></span>.
+    <% if current_user?(post.user) %>
+      <%= link_to "delete", post, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
+  </span>
+</li>

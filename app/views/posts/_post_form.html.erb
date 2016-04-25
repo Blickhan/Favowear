@@ -1,0 +1,10 @@
+<%= form_for(@post) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :image_link, placeholder: "Link to an image..." %>
+  </div>
+  <div class="field">
+    <%= f.text_field :buy_link, placeholder: "Link to where I can buy this..." %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	has_many :posts, dependent: :destroy
 	attr_accessor :remember_token	
 
 	#before_save { self.username = username.downcase }
@@ -37,5 +38,9 @@ class User < ActiveRecord::Base
   def forget
     update_attribute(:remember_digest, nil)
   end
+
+#  def feed
+#  	Post.all
+#  end
 
 end
