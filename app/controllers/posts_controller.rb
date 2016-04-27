@@ -22,6 +22,28 @@ class PostsController < ApplicationController
     redirect_to request.referrer || root_url
 	end
 
+	def upvote
+		if logged_in?
+			@post = Post.find(params[:id])
+			@post.upvote_by current_user
+			redirect_to :back
+		else
+			flash[:info] = "Create an account or log in to vote."
+			redirect_to :back
+		end
+	end
+
+	def downvote
+		if logged_in?
+			@post = Post.find(params[:id])
+			@post.downvote_by current_user
+			redirect_to :back
+		else
+			flash[:info] = "Create an account or log in to vote."
+			redirect_to :back
+		end
+	end
+
 	private
 
 		def post_params
