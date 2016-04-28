@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	before_action :logged_in_user, only: [:create, :destroy]
+	before_action :logged_in_user, only: [:create, :destroy, :upvote, :downvote]
 	before_action :correct_user,   only: :destroy
 
 	def new
@@ -16,6 +16,11 @@ class PostsController < ApplicationController
 		end
 	end
 
+	def show
+  	@post = Post.find(params[:id])
+    @comments = @post.comments.all
+  end
+
 	def destroy
 		@post.destroy
     flash[:success] = "Post deleted"
@@ -23,25 +28,15 @@ class PostsController < ApplicationController
 	end
 
 	def upvote
-		if logged_in?
 			@post = Post.find(params[:id])
 			@post.upvote_by current_user
 			redirect_to :back
-		else
-			flash[:info] = "Create an account or log in to vote."
-			redirect_to :back
-		end
 	end
 
 	def downvote
-		if logged_in?
 			@post = Post.find(params[:id])
 			@post.downvote_by current_user
 			redirect_to :back
-		else
-			flash[:info] = "Create an account or log in to vote."
-			redirect_to :back
-		end
 	end
 
 	private

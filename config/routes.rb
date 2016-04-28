@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   get 'sessions/new'
 
   get 'users/new'
@@ -11,13 +12,14 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
-  get 'post' => 'posts#new'
   resources :users
+  resources :comments
   resources :posts do
     member do
       put "like", to: "posts#upvote"
       put "dislike", to: "posts#downvote"
     end
+    resources :comments
   end
   
 

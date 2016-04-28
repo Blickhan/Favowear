@@ -1,23 +1,26 @@
 <li id="post-<%= post.id %>" class="col-md-3">
-  
-  <div class="image_link"><%= image_tag(full_url(post.image_link)) %></div>
-  <span class="voting">
-  	<%= post.get_upvotes.size - post.get_downvotes.size %>
-  	<div class="btn-group">
-	    <%= link_to like_post_path(post), method: :put, class: "btn btn-default btn-xs" do %>
-	    	<span class="glyphicon glyphicon-chevron-up"></span>
-	    <% end %>
-	    <%= link_to dislike_post_path(post), method: :put, class: "btn btn-default btn-xs" do %>
-	    	<span class="glyphicon glyphicon-chevron-down"></span>
-	    <% end %>
-    </div>
-  </span>
-  <span class="buy_link"><%= link_to "check it out", full_url(post.buy_link), target: '_blank' %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(post.created_at) %> ago by <span class="user"><%= link_to post.user.username, post.user %></span>.
-    <% if current_user?(post.user) %>
-      <%= link_to "delete", post, method: :delete,
-                                       data: { confirm: "You sure?" } %>
-    <% end %>
-  </span>
+  <div class="post-container">
+    <div class="image_link"><%= link_to image_tag(full_url(post.image_link)), post %></div>
+    <span class="voting">
+    	<div class="btn-group">
+  	    <%= link_to like_post_path(post), method: :put, class: "btn btn-default btn-xs btn-warning" do %>
+  	    	<span class="glyphicon glyphicon-chevron-up"></span>
+  	    <% end %>
+  	    <%= link_to dislike_post_path(post), method: :put, class: "btn btn-default btn-xs btn-warning" do %>
+  	    	<span class="glyphicon glyphicon-chevron-down"></span>
+  	    <% end %>
+      </div>
+      <%= post.get_upvotes.size - post.get_downvotes.size %>
+      <span class="pull-right">(<%= post.comments.count %>)</span>
+    </span>
+
+    <span class="buy_link"><%= link_to "check it out", full_url(post.buy_link), target: '_blank' %></span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(post.created_at) %> ago by <span class="user"><%= link_to post.user.username, post.user %></span>.
+      <!--<% if current_user?(post.user) %>
+        <%= link_to "delete", post, method: :delete,
+                                         data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs" %>
+      <% end %>-->
+    </span>
+  </div>
 </li>

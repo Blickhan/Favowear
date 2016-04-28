@@ -1,8 +1,14 @@
 class Post < ActiveRecord::Base
 	acts_as_votable
   belongs_to :user
-  default_scope -> { order(created_at: :desc) }
+  has_many :comments
+  default_scope -> { highest_score }#order(created_at: :desc) }
   validates :user_id, presence: true
   validates :image_link, presence: true, length: { maximum: 2048 }
   validates :buy_link, presence: true, length: { maximum: 2048 }
+
+  def self.highest_score
+  	self.order(:cached_votes_score => :desc)	
+  end
+
 end
