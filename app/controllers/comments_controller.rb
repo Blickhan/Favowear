@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
-  before_action :set_comment, only: [:destroy]
+  before_action :correct_user, only: [:destroy]
 
   def create
     @post = Post.find(params[:post_id])
@@ -22,13 +22,14 @@ class CommentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
       params.require(:comment).permit(:post_id, :body, :user_id)
+    end
+
+    def correct_user
+      @comment = Comment.find(params[:id])
+      redirect_to root_url unless @comment.user = current_user || current_user.admin?
     end
 end

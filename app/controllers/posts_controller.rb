@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 	def destroy
 		@post.destroy
     flash[:success] = "Post deleted"
-    redirect_to request.referrer || root_url
+    redirect_to current_user
 	end
 
 	def upvote
