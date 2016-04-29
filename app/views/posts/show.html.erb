@@ -20,7 +20,7 @@
 
 <span style="font-size:2em;"><%= link_to "check it out", full_url(@post.buy_link), target: '_blank' %></span>
 
-<% if current_user?(@post.user) %>
+<% if current_user?(@post.user) || (logged_in? && current_user.admin?) %>
 	<div class="btn-group pull-right">
 		<%= link_to 'Delete', @post, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
 	</div>
