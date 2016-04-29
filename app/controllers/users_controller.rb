@@ -14,6 +14,11 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
     @posts = @user.posts.paginate(page: params[:page])
+
+    @stylepoints = 0
+    @posts.each do |post|
+      @stylepoints += (post.get_upvotes.size - post.get_downvotes.size)
+    end
   end
 
   def create
