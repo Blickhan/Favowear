@@ -4,6 +4,7 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
+$gray-medium-dark: #888888;
 $purp: #5A01A5;
 
 @mixin box_sizing {
@@ -205,6 +206,24 @@ input {
     overflow: auto;
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+/* Categories index */
+
+.categories {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+  .category_name{
+    font-size: 1.2em;
+  }
+  .category_description{
+    color: $gray-medium-dark;
   }
 }
 

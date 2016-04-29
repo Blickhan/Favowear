@@ -6,5 +6,8 @@
   <div class="field">
     <%= f.text_field :buy_link, placeholder: "Link to where I can buy this..." %>
   </div>
+  <div class="field">
+    <%= f.select :category_id, options_from_collection_for_select(@categories,'id', 'name'), :prompt => "Select one" %>
+  </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>

@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
 	def new
 		@post = Post.new
+		@categories = Category.all.order(:name)
 	end
 
 	def create
@@ -43,7 +44,7 @@ class PostsController < ApplicationController
 	private
 
 		def post_params
-      params.require(:post).permit(:image_link, :buy_link)
+      params.require(:post).permit(:image_link, :buy_link, :category_id)
     end
 
      def correct_user

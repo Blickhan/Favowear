@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427232903) do
+ActiveRecord::Schema.define(version: 20160429201537) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer  "post_id"
@@ -34,12 +41,14 @@ ActiveRecord::Schema.define(version: 20160427232903) do
     t.integer  "cached_votes_score", default: 0
     t.integer  "cached_votes_up",    default: 0
     t.integer  "cached_votes_down",  default: 0
+    t.integer  "category_id"
   end
 
   add_index "posts", ["cached_votes_down"], name: "index_posts_on_cached_votes_down"
   add_index "posts", ["cached_votes_score"], name: "index_posts_on_cached_votes_score"
   add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total"
   add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up"
+  add_index "posts", ["category_id"], name: "index_posts_on_category_id"
   add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 

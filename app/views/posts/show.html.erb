@@ -4,11 +4,11 @@
 
 <span class="voting">	
 	<div class="btn-group">
-		<% active_css = logged_in? && current_user?(current_user) && current_user.voted_up_on?(@post) ? "active" : "" %>
+		<% active_css = current_user?(current_user) && current_user.voted_up_on?(@post) ? "active" : "" %>
     <%= link_to like_post_path(@post), method: :put, class: "btn btn-default btn-sm btn-warning #{active_css}" do %>
     	<span class="glyphicon glyphicon-chevron-up"></span>
     <% end %>
-    <% active_css = logged_in? && current_user?(current_user) && current_user.voted_down_on?(@post) ? "active" : "" %>
+    <% active_css = current_user?(current_user) && current_user.voted_down_on?(@post) ? "active" : "" %>
     <%= link_to dislike_post_path(@post), method: :put, class: "btn btn-default btn-sm btn-warning #{active_css}" do %>
     	<span class="glyphicon glyphicon-chevron-down"></span>
     <% end %>
@@ -30,14 +30,14 @@
 <h3 class="comments_title"><%= @post.comments.count %> Comments</h3>
 
 <% if logged_in? %>
-	<%= form_for [@post, @post.comments.build] do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
-	<div class="field">
-		<%= f.text_area :body, class: 'form-control' %>
-	</div>
-	<%= f.submit "Comment", class: "btn btn-primary" %>
+		<%= form_for [@post, @post.comments.build] do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
+		<div class="field">
+			<%= f.text_area :body, class: 'form-control' %>
+		</div>
+		<%= f.submit "Comment", class: "btn btn-primary" %>
 
-	<% end %>
+		<% end %>
 <% end %>
 
 
