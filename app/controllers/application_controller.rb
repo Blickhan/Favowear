@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   include SessionsHelper
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   private
 
@@ -19,4 +20,18 @@ class ApplicationController < ActionController::Base
     def admin_user
       redirect_to(root_url) unless logged_in? && current_user.admin?
     end
+
+    def not_found
+    respond_to do |format|
+      format.html { render status: 404 }
+    end
+    rescue ActionController::UnknownFormat
+      render status: 404, text: "nope"
+    end
+
+    def record_not_found
+    #redirect_to root_url
+    #controller: :static_pages, action: :not_found
+    redirect_to error_404_path
+  end
 end

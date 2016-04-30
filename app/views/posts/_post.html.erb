@@ -1,6 +1,7 @@
 <li id="post-<%= post.id %>" class="col-md-3">
   <div class="post-container">
     <div class="image_link"><%= link_to image_tag(full_url(post.image_link)), post %></div>
+    <span class="category"><%= link_to url_for(post.category), post.category %></span>
     <span class="voting">
     	<div class="btn-group">
   	    <% active_css = logged_in? && current_user?(current_user) && current_user.voted_up_on?(post) ? "active" : "" %>

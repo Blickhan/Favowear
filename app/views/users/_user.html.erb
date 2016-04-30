@@ -1,7 +1,7 @@
 <li>
   <%= link_to user.username, user %>
   <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "Are you sure?" } %>
+    <%= link_to "delete", user, method: :delete,
+                                  data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-danger pull-right"  %>
   <% end %>
 </li>

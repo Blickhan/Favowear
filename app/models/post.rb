@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   acts_as_votable
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
   belongs_to :category
   default_scope -> { highest_score }#order(created_at: :desc) }
   validates :user_id, presence: true
