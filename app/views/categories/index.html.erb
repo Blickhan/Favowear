@@ -1,0 +1,10 @@
+<% provide(:title, 'Categories') %>
+<h1>Categories</h1>
+
+<% if logged_in? and current_user.admin? %>
+	<%= link_to "Create new Category", new_category_path %>
+<% end %>
+
+<ul class="categories">
+  <%= render @categories %>
+</ul>

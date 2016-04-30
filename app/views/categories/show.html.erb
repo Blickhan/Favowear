@@ -1,0 +1,14 @@
+<% provide(:title, @category.name) %>
+<div class="row">
+  <section class="category_info">
+    <h1><%= @category.name %></h1>
+  </section>
+</div>
+<div class="row">
+  <% if @posts.any? %>
+    <ol class="posts">
+      <%= render @posts %>
+    </ol>
+    <%= will_paginate @posts %>
+  <% end %>
+</div>
