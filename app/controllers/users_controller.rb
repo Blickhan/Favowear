@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:index, :destroy]
+  before_action :find_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = User.find(params[:id])
+  	#@user = User.find(params[:id])
     @posts = @user.posts.paginate(page: params[:page])
 
     @stylepoints = style_points(@user)
@@ -30,11 +31,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
@@ -44,7 +45,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    #User.find(params[:id]).destroy
+    @user.destroy
     flash[:success] = "User deleted"
     redirect_to users_url
   end
@@ -60,7 +62,7 @@ class UsersController < ApplicationController
 
     # Confirms the correct user.
     def correct_user
-      @user = User.find(params[:id])
+      find_user
       redirect_to(root_url) unless @user == current_user
     end
 
@@ -72,5 +74,8 @@ class UsersController < ApplicationController
       @sum
     end
 
+    def find_user
+      @user = User.find_by_username!(params[:id])
+    end
 
 end
