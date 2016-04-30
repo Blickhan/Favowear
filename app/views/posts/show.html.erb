@@ -26,6 +26,8 @@
 	</div>
 <% end %>
 
+<div class="category" style="font-size:1.2em"><%= link_to url_for(@post.category), @post.category %></div>
+
 
 <h3 class="comments_title"><%= @post.comments.count %> Comments</h3>
 

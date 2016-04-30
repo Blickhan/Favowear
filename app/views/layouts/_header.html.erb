@@ -5,6 +5,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Categories", categories_path %></li>
         <!--<li><%= link_to "Help", help_path %></li>-->
         <% if logged_in? %>
           <li><%= link_to "Post", new_post_path %></li>
