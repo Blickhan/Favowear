@@ -14,11 +14,12 @@
     <span class="voting">
     	<div class="btn-group">
   	    <% active_css = logged_in? && current_user?(current_user) && current_user.voted_up_on?(post) ? "active" : "" %>
-        <%= link_to upvote_post_path(post), method: :put, remote: true, id: "upvote-" + post.id.to_s + "-button", class: "btn btn-default btn-xs btn-warning #{active_css}" do %>
+        <% use_ajax = logged_in? %>
+        <%= link_to upvote_post_path(post), method: :put, remote: use_ajax, id: "upvote-" + post.id.to_s + "-button", class: "btn btn-default btn-xs btn-warning #{active_css}" do %>
   	    	<span class="glyphicon glyphicon-chevron-up"></span>
   	    <% end %>
         <% active_css = logged_in? && current_user?(current_user) && current_user.voted_down_on?(post) ? "active" : "" %>
-  	    <%= link_to downvote_post_path(post), method: :put, remote: true, id: "downvote-" + post.id.to_s + "-button", class: "btn btn-default btn-xs btn-warning #{active_css}" do %>
+  	    <%= link_to downvote_post_path(post), method: :put, remote: use_ajax, id: "downvote-" + post.id.to_s + "-button", class: "btn btn-default btn-xs btn-warning #{active_css}" do %>
   	    	<span class="glyphicon glyphicon-chevron-down"></span>
   	    <% end %>
       </div>
