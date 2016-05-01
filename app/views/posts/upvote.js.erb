@@ -1,0 +1,3 @@
+$('#downvote-<%= @post.id %>-button').removeClass('active');
+$('#upvote-<%= @post.id %>-button').addClass('active');
+$('#post-<%= @post.id %>-score').html('<%= @post.get_upvotes.size - @post.get_downvotes.size %>')
