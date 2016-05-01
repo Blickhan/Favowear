@@ -83,13 +83,6 @@ p {
   padding-top: 9px;
 }
 
-.nav a{
-  color: #017f7f;
-  &:hover {
-    color: #017f7f;
-  }
-
-}
 
 /* footer */
 
@@ -233,32 +226,33 @@ input {
   list-style: none;
   padding: 0;
   li {
-    padding: 10px 0;
+    padding: 10px;
     border-top: 1px solid #e8e8e8;
   }
   .post-container{
-    width: 250px;
+    width: 100%;
+  }
+  .post-image-container{
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    background-color: #222;
+    border-radius: 5px;
   }
   .user {
     padding-top: 0;
   }
   .image_link {
-    position:relative;
-    width: 250px;
-    height: 250px;
-    background-color: #222;
-    border-radius: 5px;
+    margin-top: 100%;
     img {
       max-height: 100%;
       max-width: 100%;
-      width: auto;
-      height: auto;
+      margin: auto;
       position:absolute;
       top:0;
       bottom:0;
       left: 0;
       right: 0;
-      margin:auto;
       border-radius: 5px;
     }
   }
