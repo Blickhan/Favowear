@@ -8,10 +8,11 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-        flash[:success] = "Comment submitted"
-        redirect_to :back
+      flash[:success] = "Comment submitted"
+      redirect_to :back
     else
-      render 'static_pages/home'
+      flash[:danger] = "Comment cannot be blank"
+      redirect_to :back
     end
   end
 

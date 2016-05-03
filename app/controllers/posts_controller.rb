@@ -14,7 +14,8 @@ class PostsController < ApplicationController
 				flash[:success] = "Post created."
 				redirect_to root_url
 		else
-			render 'static_pages/home'
+			@categories = Category.all.order(:name)
+			render 'new'
 		end
 	end
 
