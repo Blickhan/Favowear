@@ -1,4 +1,11 @@
+
+$cool-green: #017f7f;
+$gray-medium-light: #eaeaea;
+$gray-medium-dark: #888888;
+
 /* navbar */
+
+
 
 .navbar-default {
     background-color: #F8F8F8;
@@ -14,7 +21,7 @@
 }
 /* link */
 .navbar-default .navbar-nav > li > a {
-    color: #017f7f;
+    color: $cool-green;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
@@ -56,17 +63,56 @@
 .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus,{
     color: #000;
 }
-@media (max-width: 768px) {
+@media screen and (max-device-width: 991px) {
+    
+    #logoimage img{
+      display: block;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      background: url(<%= asset_path 'ms-icon-150x150.png' %>) no-repeat;
+      width: 150px; /* Width of new image */
+      height: 150px; /* Height of new image */
+      padding-left: 150px; /* Equal to width of new image */
+    }
+    
+    .navbar{
+        position: fixed;
+        font-size: 300%;
+        padding: 0;
+    }
+    .container-fluid{
+        padding: 0;
+    }
+    .navbar-toggle{
+        height: 150px;
+        width: 150px;
+        background-color: $gray-medium-light;
+        border-radius: 5px;
+    }
+    .navbar-nav{
+        margin: 0 !important;
+        width: 100%;
+        li{
+            background-color: $gray-medium-light;
+            width: 100%;
+            float: none;
+            display: block;
+            border-bottom: 1px solid $gray-medium-dark;
+            padding: 20px;
+        }
+    }
     .navbar-collapse.collapse {
         display: none !important;
     }
     .navbar-collapse.collapse.in {
         display: block !important;
+        padding: 0 !important;
     }
     .navbar-header .collapse, .navbar-toggle {
         display:block !important;
     }
     .navbar-header {
         float:none;
+        padding: 20px;
     }
 }
