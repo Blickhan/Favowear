@@ -231,12 +231,15 @@ input {
   }
   .post-container{
     width: 100%;
+    background-color: $gray-medium-light;
+    border-radius:5px;
+    padding: 5px;
   }
   .post-image-container{
     width: 100%;
     display: inline-block;
     position: relative;
-    background-color: #222;
+    /*background-color: #222;*/
     border-radius: 5px;
     overflow: hidden;
   }
@@ -277,7 +280,7 @@ input {
     position:relative;
     width: 500px;
     height: 500px;
-    background-color: #222;
+    /*background-color: #222;*/
     border-radius: 5px;
     img {
       max-height: 100%;
