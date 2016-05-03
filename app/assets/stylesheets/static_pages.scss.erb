@@ -82,11 +82,6 @@ $gray-medium-dark: #888888;
         font-size: 200%;
         border-radius: 8px;
     }
-    .btn-sm {
-        padding: 18px 28px;
-        font-size: 300%;
-        border-radius: 8px;
-    }
     .navbar{
         position: fixed;
         padding: 0;
@@ -107,12 +102,16 @@ $gray-medium-dark: #888888;
         margin: 0 !important;
         width: 100%;
         li{
+            font-size: 300%; 
             background-color: $gray-medium-light;
             width: 100%;
             float: none;
             display: block;
             border-bottom: 1px solid $gray-medium-dark;
-            padding: 20px;
+            a{
+                display: block;
+                padding: 50px;
+            }
         }
     }
     .navbar-collapse.collapse {
