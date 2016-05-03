@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
-	before_action :logged_in_user, only: [:new, :create, :destroy]
-	before_action :admin_user,     only: [:new, :create, :destroy]
-	before_action :find_category, only: [:show, :destroy]
+	before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
+	before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy]
+	before_action :find_category, only: [:show, :edit, :update, :destroy]
 
 	def new 
 		@category = Category.new
@@ -14,6 +14,19 @@ class CategoriesController < ApplicationController
       redirect_to categories_path
     else
       render 'new'
+    end
+	end
+
+	def edit
+
+	end
+
+	def update
+		if @category.update_attributes(category_params)
+      flash[:success] = "Category updated"
+      redirect_to @category
+    else
+      render 'edit'
     end
 	end
 
