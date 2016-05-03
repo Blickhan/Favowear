@@ -68,7 +68,7 @@ $gray-medium-dark: #888888;
 .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus,{
     color: #000;
 }
-@media screen and (max-device-width: 991px) {
+@media screen and (max-width: 991px) {
     
     #logoimage img{
       display: block;
@@ -89,6 +89,11 @@ $gray-medium-dark: #888888;
     }
     .btn-danger{
         display:none;
+    }
+    .dropdown-toggle .caret {
+        border-left: 14px solid transparent;
+        border-right: 14px solid transparent;
+        border-top: 14px solid #000000;
     }
     .navbar{
         position: fixed;
