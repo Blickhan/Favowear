@@ -63,7 +63,7 @@ $gray-medium-dark: #888888;
 .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus,{
     color: #000;
 }
-@media screen and (max-device-width: 991px) {
+@media screen and (max-width: 991px) {
     
     #logoimage img{
       display: block;
@@ -74,11 +74,25 @@ $gray-medium-dark: #888888;
       height: 150px; /* Height of new image */
       padding-left: 150px; /* Equal to width of new image */
     }
-    
+    h3,body{
+        font-size: 300%; 
+    }
+    .btn {
+        padding: 8px 28px;
+        font-size: 200%;
+        border-radius: 8px;
+    }
+    .btn-sm {
+        padding: 18px 28px;
+        font-size: 300%;
+        border-radius: 8px;
+    }
     .navbar{
         position: fixed;
-        font-size: 300%;
         padding: 0;
+    }
+    .container{
+        padding-top: 175px;
     }
     .container-fluid{
         padding: 0;
