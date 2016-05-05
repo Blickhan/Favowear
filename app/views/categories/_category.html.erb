@@ -2,7 +2,7 @@
   <span class="category_name"><%= category.name %>
   
   <% if logged_in? %>
-  	<span class="follow_form" id="follow_form_<%= category.id %>">
+  	<span class="follow_form pull-left" id="follow_form_<%= category.id %>">
 			<% @category = category %>
 			<% if current_user.following?(category) %>
 			  <%= render 'unfollow' %>
