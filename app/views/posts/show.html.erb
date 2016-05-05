@@ -3,15 +3,15 @@
 </div>
 
 <span class="voting">	
-	<div class="btn-group">
+	<div class="btn-group-vertical">
 		<% active_css = logged_in? && current_user?(current_user) && current_user.voted_up_on?(@post) ? "active" : "" %>
 		<% use_ajax = logged_in? %>
-    <%= link_to upvote_post_path(@post), method: :put, remote: use_ajax, id: "upvote-" + @post.id.to_s + "-button", class: "btn btn-default btn-sm btn-warning #{active_css}" do %>
-    	<span class="glyphicon glyphicon-chevron-up"></span>
+    <%= link_to upvote_post_path(@post), method: :put, remote: use_ajax, id: "upvote-" + @post.id.to_s + "-button", class: "btn btn-sm btn-warning #{active_css}" do %>
+    	<i class="fa fa-arrow-up" aria-hidden="true"></i>
     <% end %>
     <% active_css = logged_in? && current_user?(current_user) && current_user.voted_down_on?(@post) ? "active" : "" %>
-    <%= link_to downvote_post_path(@post), method: :put, remote: use_ajax, id: "downvote-" + @post.id.to_s + "-button", class: "btn btn-default btn-sm btn-warning #{active_css}" do %>
-    	<span class="glyphicon glyphicon-chevron-down"></span>
+    <%= link_to downvote_post_path(@post), method: :put, remote: use_ajax, id: "downvote-" + @post.id.to_s + "-button", class: "btn btn-sm btn-warning #{active_css}" do %>
+    	<i class="fa fa-arrow-down" aria-hidden="true"></i>
     <% end %>
   </div>
   <span id="post-<%= @post.id %>-score"><%= @post.get_upvotes.size - @post.get_downvotes.size %></span>
