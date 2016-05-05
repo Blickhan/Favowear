@@ -46,9 +46,10 @@ class User < ActiveRecord::Base
     update_attribute(:remember_digest, nil)
   end
 
-#  def feed
-#  	Post.all
-#  end
+  def feed
+  	following_ids = "SELECT category_id FROM followings WHERE  user_id = :user_id"
+    Post.where("category_id IN (#{following_ids})", user_id: id)
+  end
 
 	def follow(category)
 		followings.create(category_id: category.id)

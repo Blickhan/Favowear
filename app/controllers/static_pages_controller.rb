@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-  	@feed_items = Post.all.paginate(page: params[:page])
+  	@feed_items = current_user.feed.paginate(page: params[:page])#Post.all.paginate(page: params[:page])
   end
 
   def help
