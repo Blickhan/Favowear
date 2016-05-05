@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 	acts_as_voter
 	has_many :posts, dependent: :destroy
+	has_many :followings, foreign_key: :user_id, dependent: :destroy
+	has_many :categories, through: :followings
 	attr_accessor :remember_token	
 
 	#before_save { self.username = username.downcase }
@@ -47,5 +49,17 @@ class User < ActiveRecord::Base
 #  def feed
 #  	Post.all
 #  end
+
+	def follow(category)
+		followings.create(category_id: category.id)
+	end
+
+	def unfollow(category)
+		followings.find_by(category_id: category.id).destroy
+	end
+
+	def following?(category)
+		categories.include?(category)
+	end
 
 end
