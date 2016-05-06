@@ -13,6 +13,10 @@
 
   <span class="category_name"><%= link_to category.name, category %></span>
 
+  <% if category.is_default? %>
+    <span style="padding:5px;color:red;border: 2px solid red;border-radius:3px;">Default</span>
+  <% end %>
+
   <span class="category_description"><%= category.description %></span>
 
   <% if logged_in? && current_user.admin? %>
