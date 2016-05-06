@@ -1,20 +1,19 @@
 <li>
-  <span class="category_name"><%= category.name %>
-  
+
   <% if logged_in? %>
-  	<span class="follow_form pull-left" id="follow_form_<%= category.id %>">
-			<% @category = category %>
-			<% if current_user.following?(category) %>
-			  <%= render 'unfollow' %>
-			<% else %>
-			  <%= render 'follow' %>
-			<% end %>
-		</span>
+    <span class="follow_form pull-left" id="follow_form_<%= category.id %>">
+      <% @category = category %>
+      <% if current_user.following?(category) %>
+        <%= render 'unfollow' %>
+      <% else %>
+        <%= render 'follow' %>
+      <% end %>
+    </span>
   <% end %>
-  
-  </span><p><%= link_to url_for(category), category %></p><p class="category_description">
-  
-  <%= category.description %></p>
+
+  <span class="category_name"><%= link_to category.name, category %></span>
+
+  <span class="category_description"><%= category.description %></span>
 
   <% if logged_in? && current_user.admin? %>
     <%= link_to "delete", category, method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-xs btn-danger pull-right" %>

@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
+      follow_default_categories      
     	flash[:success] = "Welcome aboard!"
       redirect_to root_url
     else
@@ -77,6 +78,12 @@ class UsersController < ApplicationController
 
     def find_user
       @user = User.find_by_username!(params[:id])
+    end
+
+    def follow_default_categories
+      Category.where(is_default: true).each do |category|
+        @user.follow(category)
+      end
     end
 
 end

@@ -3,16 +3,23 @@
 
 Category.create!(name: "Shirts",
 									description: "the coolest shirts",
-									slug: "shirts")
+									slug: "shirts",
+									is_default: true)
 Category.create!(name: "Pants",
 									description: "really cool pants",
-									slug: "pants")
+									slug: "pants",
+									is_default: true)
 Category.create!(name: "Socks",
 									description: "dope ass socks",
-									slug: "socks")
+									slug: "socks",
+									is_default: true)
 Category.create!(name: "Watches",
 									description: "to help tell time",
-									slug: "watches")
+									slug: "watches",
+									is_default: true)
+Category.create!(name: "Scarves",
+									description: "keep the neck warm",
+									slug: "scarves")
 
 case Rails.env
 when "development"
