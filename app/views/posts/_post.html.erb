@@ -3,11 +3,14 @@
     <div class="post-image-container">
     <div class="image_link"><%= link_to image_tag(full_url(post.image_link)), post %></div>
     </div>
+    <div class="post-details-container">
     <span class="category">
       <%= link_to url_for(post.category), post.category %>
       <% if logged_in? && current_user.admin? %>
         <div class="btn-group pull-right">
-          <%= link_to 'Delete', post, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-xs pull-right" %>
+          <%= link_to post, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-xs pull-right" do %>
+            <i class="fa fa-times" aria-hidden="true"></i>
+          <% end %>
         </div>
       <% end %>
     </span>
@@ -31,5 +34,6 @@
     <span class="timestamp">
       Posted <%= time_ago_in_words(post.created_at) %> ago by <span class="user"><%= link_to post.user.username, post.user %></span>.
     </span>
+    </div>
   </div>
 </li>

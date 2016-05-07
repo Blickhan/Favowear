@@ -20,7 +20,9 @@
   <span class="category_description"><%= category.description %></span>
 
   <% if logged_in? && current_user.admin? %>
-    <%= link_to "delete", category, method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-xs btn-danger pull-right" %>
-    <%= link_to "edit", edit_category_path(category), class: "btn btn-xs btn-primary pull-right" %>
+    <%= link_to category, method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-xs btn-danger pull-right" do %>
+      <i class="fa fa-times" aria-hidden="true"></i>
+    <% end %>
+    <%= link_to "edit", edit_category_path(category), class: "btn btn-xs btn-primary pull-right", style: "margin: 0px 5px;" %>
   <% end %>
 </li>

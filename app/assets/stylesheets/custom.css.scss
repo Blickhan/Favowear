@@ -2,10 +2,12 @@
 @import "bootstrap";
 
 /* mixins, variables, etc. */
-
+$site-background-color: #f1f5f8;
 $gray-medium-light: #eaeaea;
 $gray-medium-dark: #888888;
 $purp: #5A01A5;
+$border-color: #dedede;
+$cool-green: #017f7f;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -17,6 +19,7 @@ $purp: #5A01A5;
 
 body {
   padding-top: 60px;
+  background-color: $site-background-color;
 }
 
 section {
@@ -59,6 +62,10 @@ h2 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+}
+
+a{
+  color: $cool-green;
 }
 
 
@@ -195,6 +202,11 @@ input {
 .users {
   list-style: none;
   margin: 0;
+  background-color: white;
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  padding: 5px;
+  margin-top: 10px;
   li {
     overflow: auto;
     padding: 10px 0;
@@ -207,6 +219,11 @@ input {
 .categories {
   list-style: none;
   margin: 0;
+  background-color: white;
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  padding: 5px;
+  margin-top: 10px;
   li {
     overflow: auto;
     padding: 10px 0;
@@ -227,11 +244,11 @@ input {
   padding: 0;
   li {
     padding: 10px;
-    border-top: 1px solid #e8e8e8;
   }
   .post-container{
     width: 100%;
-    background-color: $gray-medium-light;
+    background-color: white;
+    border: 1px solid $border-color;
     border-radius:3px;
     padding: 5px;
   }
@@ -242,6 +259,10 @@ input {
     /*background-color: #222;*/
     border-radius: 3px;
     overflow: hidden;
+  }
+  .post-details-container{
+    border-top: 1px solid $border-color;
+    padding-top: 5px;
   }
   .user {
     padding-top: 0;
@@ -267,6 +288,7 @@ input {
   }
   .buy_link {
     display: block;
+    
   }
   .timestamp {
     font-size: .8em;
