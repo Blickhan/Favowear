@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
 	def update
 		if @category.update_attributes(category_params)
       flash[:success] = "Category updated"
-      redirect_to @category
+      redirect_to categories_path
     else
       render 'edit'
     end
@@ -48,7 +48,7 @@ class CategoriesController < ApplicationController
 	private
 
     def category_params
-      params.require(:category).permit(:name, :slug, :description)
+      params.require(:category).permit(:name, :slug, :description, :is_default)
     end    
 
     def find_category

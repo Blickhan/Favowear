@@ -4,9 +4,9 @@
     <span class="follow_form pull-left" id="follow_form_<%= category.id %>">
       <% @category = category %>
       <% if current_user.following?(category) %>
-        <%= render 'unfollow' %>
+        <%= render 'categories/unfollow' %>
       <% else %>
-        <%= render 'follow' %>
+        <%= render 'categories/follow' %>
       <% end %>
     </span>
   <% end %>
@@ -14,7 +14,7 @@
   <span class="category_name"><%= link_to category.name, category %></span>
 
   <% if category.is_default? %>
-    <span style="padding:5px;color:red;border: 2px solid red;border-radius:3px;">Default</span>
+    <span style="font-size:.8em;padding:3px;color:red;border: 2px solid red;border-radius:3px;">Default</span>
   <% end %>
 
   <span class="category_description"><%= category.description %></span>

@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   resources :followings, only: [:create, :destroy]
-  resources :users
+  resources :users do
+    member do
+      get :categories
+    end
+  end
   resources :categories, :path => 'c' # e.g. localhost:3000/c/shirts
   resources :comments
   resources :posts, only: [:new, :show, :create, :destroy] do

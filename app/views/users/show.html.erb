@@ -2,7 +2,10 @@
 <div class="row">
   <section class="user_info">
     <h1><%= @user.username %></h1>
-    <h1><small>Stylepoints: <%= @stylepoints %></small></h1>
+    <h3>Stylepoints: <%= @stylepoints %></h3>
+    <% if logged_in? && current_user?(@user) %>
+      <h3><a href="<%= categories_user_path(@user) %>">Followed Categories</a></h3>
+    <% end %>
   </section>
 </div>
 <div class="row">

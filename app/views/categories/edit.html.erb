@@ -17,6 +17,10 @@
 		  <%= f.label :description %>
 		  <%= f.text_area :description, class: 'form-control' %>
 
+		  <%= f.label :is_default, :class => "checkbox" do %>
+		  Default<%= f.check_box :is_default, :style => "vertical-align:middle;width:20%;" %>
+		  <% end %>
+
 		  <%= f.submit "Save Changes", class: "btn btn-primary" %>
 		<% end %>
   </div>
