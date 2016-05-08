@@ -1,33 +1,34 @@
 <div class="page-header">
 	<h1><small>submitted <%= time_ago_in_words(@post.created_at) %> ago by <%= link_to @post.user.username, @post.user %></small></h1>
 </div>
+<div class="post_show_page_container">
+	<span class="voting">	
+		<div class="btn-group-vertical">
+			<% active_css = logged_in? && current_user?(current_user) && current_user.voted_up_on?(@post) ? "active" : "" %>
+			<% use_ajax = logged_in? %>
+	    <%= link_to upvote_post_path(@post), method: :put, remote: use_ajax, id: "upvote-" + @post.id.to_s + "-button", class: "btn btn-sm btn-warning #{active_css}" do %>
+	    	<i class="fa fa-arrow-up" aria-hidden="true"></i>
+	    <% end %>
+	    <% active_css = logged_in? && current_user?(current_user) && current_user.voted_down_on?(@post) ? "active" : "" %>
+	    <%= link_to downvote_post_path(@post), method: :put, remote: use_ajax, id: "downvote-" + @post.id.to_s + "-button", class: "btn btn-sm btn-warning #{active_css}" do %>
+	    	<i class="fa fa-arrow-down" aria-hidden="true"></i>
+	    <% end %>
+	  </div>
+	  <span id="post-<%= @post.id %>-score"><%= @post.get_upvotes.size - @post.get_downvotes.size %></span>
+	</span>
 
-<span class="voting">	
-	<div class="btn-group-vertical">
-		<% active_css = logged_in? && current_user?(current_user) && current_user.voted_up_on?(@post) ? "active" : "" %>
-		<% use_ajax = logged_in? %>
-    <%= link_to upvote_post_path(@post), method: :put, remote: use_ajax, id: "upvote-" + @post.id.to_s + "-button", class: "btn btn-sm btn-warning #{active_css}" do %>
-    	<i class="fa fa-arrow-up" aria-hidden="true"></i>
-    <% end %>
-    <% active_css = logged_in? && current_user?(current_user) && current_user.voted_down_on?(@post) ? "active" : "" %>
-    <%= link_to downvote_post_path(@post), method: :put, remote: use_ajax, id: "downvote-" + @post.id.to_s + "-button", class: "btn btn-sm btn-warning #{active_css}" do %>
-    	<i class="fa fa-arrow-down" aria-hidden="true"></i>
-    <% end %>
-  </div>
-  <span id="post-<%= @post.id %>-score"><%= @post.get_upvotes.size - @post.get_downvotes.size %></span>
-</span>
+	<div class="image_link_show_page"><%= image_tag(full_url(@post.image_link)) %></div>
 
-<div class="image_link_show_page"><%= image_tag(full_url(@post.image_link)) %></div>
+	<span style="font-size:2em;"><%= link_to "check it out", full_url(@post.buy_link), target: '_blank' %></span>
 
-<span style="font-size:2em;"><%= link_to "check it out", full_url(@post.buy_link), target: '_blank' %></span>
+	<% if current_user?(@post.user) || (logged_in? && current_user.admin?) %>
+		<div class="btn-group pull-right">
+			<%= link_to 'Delete', @post, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+		</div>
+	<% end %>
 
-<% if current_user?(@post.user) || (logged_in? && current_user.admin?) %>
-	<div class="btn-group pull-right">
-		<%= link_to 'Delete', @post, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
-	</div>
-<% end %>
-
-<div class="category" style="font-size:1.2em"><%= link_to url_for(@post.category), @post.category %></div>
+	<div class="category" style="font-size:1.2em"><%= link_to url_for(@post.category), @post.category %></div>
+</div>
 
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
