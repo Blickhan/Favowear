@@ -205,7 +205,7 @@ input {
   background-color: white;
   border: 1px solid $border-color;
   border-radius: 3px;
-  padding: 5px;
+  padding: 10px;
   margin-top: 10px;
   li {
     overflow: auto;
@@ -222,7 +222,7 @@ input {
   background-color: white;
   border: 1px solid $border-color;
   border-radius: 3px;
-  padding: 5px;
+  padding: 10px;
   margin-top: 10px;
   li {
     overflow: auto;
@@ -338,9 +338,12 @@ span.picture {
 
 .comments {
   list-style: none;
+
   .comment_wrapper{
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    background-color: white;
+    border: 1px solid $border-color;
+    border-radius: 3px;
+    padding: 10px;
   }
   li{
     padding: 10px;
