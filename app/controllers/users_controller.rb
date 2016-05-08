@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
   # allows users to see their followed categories
   def categories
-    @categories = @user.categories.paginate(page: params[:page])
+    @categories = @user.categories.order(:name).paginate(page: params[:page])
     render 'show_categories'
   end
 
