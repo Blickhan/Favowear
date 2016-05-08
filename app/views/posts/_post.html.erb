@@ -31,8 +31,9 @@
     </span>
 
     <span class="buy_link"><%= link_to "check it out", full_url(post.buy_link), target: '_blank' %></span>
-    <span class="timestamp">
-      Posted <%= time_ago_in_words(post.created_at) %> ago by <span class="user"><%= link_to post.user.username, post.user %></span>.
+    <span class="post_footer">
+      <span class="timestamp">Posted <%= time_ago_in_words(post.created_at) %> ago by </span>
+      <span class="user"><%= link_to post.user.username, post.user %></span>.
     </span>
     </div>
   </div>

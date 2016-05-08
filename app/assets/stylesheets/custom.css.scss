@@ -264,9 +264,6 @@ input {
     border-top: 1px solid $border-color;
     padding-top: 5px;
   }
-  .user {
-    padding-top: 0;
-  }
   .image_link {
     margin-top: 100%;
     img {
@@ -290,10 +287,18 @@ input {
     display: block;
     
   }
-  .timestamp {
-    font-size: .8em;
-    color: $gray-light;
+  .post_footer{
     display: block;
+    white-space: nowrap;
+    font-size: .8em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    .timestamp {
+      color: $gray-light;
+    }
+    .user {
+      
+    }
   }
 }
 
