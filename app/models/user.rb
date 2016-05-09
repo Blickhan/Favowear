@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	has_many :posts, dependent: :destroy
 	has_many :followings, foreign_key: :user_id, dependent: :destroy
 	has_many :categories, through: :followings
+	has_many :comments
 	attr_accessor :remember_token	
 
 	#before_save { self.username = username.downcase }
