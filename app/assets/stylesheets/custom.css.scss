@@ -7,7 +7,7 @@ $gray-medium-light: #eaeaea;
 $gray-medium-dark: #888888;
 $purp: #5A01A5;
 $border-color: #dedede;
-$cool-green: #017f7f;
+$main-color: #017f7f;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -64,7 +64,7 @@ p {
 }
 
 a{
-  color: $cool-green;
+  color: $main-color;
 }
 
 
@@ -327,6 +327,12 @@ input {
         border-radius: 3px;
       }  
   }
+}
+
+#home_feed > i#loading_icon{
+  color: $main-color;
+  margin: auto;
+  display: block;
 }
 
 #date_filter{

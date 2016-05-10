@@ -3,13 +3,15 @@ class StaticPagesController < ApplicationController
 
 
   def home
-    @feed_items = filter_by_date(1)
+    @date_filter = session[:date_filter] || 1
+    @feed_items = filter_by_date(@date_filter)
   end
 
   def filter_posts
-    @date_filter = params[:date_filter] || '1'
+    @date_filter = params[:date_filter]
+    session[:date_filter] =  @date_filter
     @feed_items = filter_by_date(@date_filter).paginate(page: params[:page])
-    
+
     respond_to do |format|
         format.html {redirect_to :back }
         format.js
