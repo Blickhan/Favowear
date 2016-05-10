@@ -1,5 +1,18 @@
-<div class="row">
-    <h3>Posts</h3>
+
+<div class="row"><span class="col-md-10"><h3>Posts</h3></span>
+  <span class="col-md-2 pull-right">
+  	<%= form_tag(fetch_posts_path, method: :get, remote: true) do %>
+    	<div class="field">
+    	<%= select_tag(:date_filter, 
+    			options_for_select([['Day', 1], ['Week', 2], ['Month',3], ['Year',4], ['All Time',5]]), 
+    													onchange: "$(this.form).submit();", 
+    													class: "form-control" ) %>
+    	
+    	</div>
+  	<% end %>
+  </span>
+</div>
+<div class="row" id="home_feed">
     <%= render 'shared/feed' %>
 </div>
 

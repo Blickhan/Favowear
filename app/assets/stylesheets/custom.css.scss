@@ -73,12 +73,12 @@ a{
 #logo {
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
+  font-size: 2em;
+  color: #333;
   letter-spacing: -1px;
   padding-top: 9px;
   &:hover {
-    color: white;
+    color: black;
     text-decoration: none;
   }
 }
@@ -329,6 +329,9 @@ input {
   }
 }
 
+#date_filter{
+  margin-top: 20px;
+}
 
 aside {
   textarea {
