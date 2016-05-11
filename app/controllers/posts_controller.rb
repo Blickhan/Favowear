@@ -28,9 +28,8 @@ class PostsController < ApplicationController
 	def destroy
 		@post.destroy
     #flash[:success] = "Post deleted"
-    
     respond_to do |format|
-	    format.html {redirect_to :back }
+	    format.html {redirect_to current_user }
 	    format.js
 	  end
 	end

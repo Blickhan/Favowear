@@ -27,6 +27,17 @@ class StaticPagesController < ApplicationController
   def contact
   end
 
+  def search
+    @feed_items = Post.all
+    if params[:search]
+      @feed_items = @feed_items.search(params[:search]).paginate(page: params[:page])
+      render 'home'
+    else
+      redirect_to root_path
+    end
+
+  end
+
   
 
   private

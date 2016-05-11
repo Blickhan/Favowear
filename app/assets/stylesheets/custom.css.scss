@@ -89,6 +89,16 @@ a{
   padding-top: 9px;
 }
 
+#search_form{
+  padding: 10px;
+  #search{
+    border-radius: 3px;
+    background-color: $site-background-color;
+  }
+  #search:focus{
+    background-color: white;
+  }
+}
 
 /* footer */
 

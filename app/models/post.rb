@@ -13,6 +13,9 @@ class Post < ActiveRecord::Base
   	self.order(:cached_votes_score => :desc)	
   end
 
+  def self.search(search)
+    where("image_link like ?", "%#{search}%")
+  end
 
 
 end
