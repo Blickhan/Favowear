@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 	before_action :logged_in_user, only: [:create, :destroy, :upvote, :downvote]
 	before_action :correct_user,   only: :destroy
+	before_action :posting_too_much, only: :create
 
 	def new
 		@post = Post.new
@@ -26,8 +27,12 @@ class PostsController < ApplicationController
 
 	def destroy
 		@post.destroy
-    flash[:success] = "Post deleted"
-    redirect_to current_user
+    #flash[:success] = "Post deleted"
+    
+    respond_to do |format|
+	    format.html {redirect_to :back }
+	    format.js
+	  end
 	end
 
 	def upvote
@@ -61,6 +66,14 @@ class PostsController < ApplicationController
       end
 
       redirect_to root_url if @post.nil?
+    end
+
+    def posting_too_much
+    	posts_per_hour = 5
+    	if current_user.posts.where('created_at > ?', 1.hour.ago).count >= posts_per_hour && !current_user.admin?
+    		flash[:danger] = "You're posting too much. Five posts per hour are allowed."
+    		redirect_to new_post_path
+    	end
     end
 
 end
