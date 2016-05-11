@@ -38,6 +38,9 @@ class StaticPagesController < ApplicationController
 
   end
 
+  def sitemap
+  end
+
   
 
   private
