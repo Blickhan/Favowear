@@ -7,16 +7,19 @@
       </button>
       <%= link_to image_tag("favicon-32x32.png"), root_path, id: "logoimage", class: "navbar-brand" %>
       <%= link_to "Favowear", root_path, id: "logo" %>
+      <%= form_tag search_path, :method => 'get', class: 'input-group navbar-left', id: 'search_form'  do %>
+        <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search Favowear' %>
+          <span class="input-group-btn">
+          <%= button_tag class: "btn btn-default" do %>
+            <span class="glyphicon glyphicon-search"></span>
+          <% end %>
+          </span>
+      <% end %>
     </div>
       <div class="collapse navbar-collapse" id="myNavbar">
-        <%= form_tag search_path, :method => 'get', class: 'input-group col-md-2 pull-left', id: 'search_form'  do %>
-          <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search Favowear' %>
-            <span class="input-group-btn">
-            <%= button_tag class: "btn btn-default" do %>
-              <span class="glyphicon glyphicon-search"></span>
-            <% end %>
-            </span>
-        <% end %> 
+
+      
+
         <ul class="nav navbar-nav navbar-right">
           <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to root_path do %><i class="nav-icon fa fa-home" aria-hidden="true"></i> <span class="nav-text">Home</span><% end %></li>
           <li class="<%= 'active' if current_page?(categories_path) %>"><%= link_to categories_path do %><i class="nav-icon fa fa-tags" aria-hidden="true"></i> <span class="nav-text">Categories</span><% end %></li>
