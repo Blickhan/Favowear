@@ -1,0 +1,5 @@
+$(".comments").prepend("<%= escape_javascript(render :partial => 'comment', :locals => { :comment => @comment } ) %>");
+
+$('#comment-<%= @comment.id %>').effect("highlight", {}, 1000);
+
+$('#comment_body').val('')

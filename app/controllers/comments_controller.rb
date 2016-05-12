@@ -8,8 +8,10 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      flash[:success] = "Comment submitted"
-      redirect_to :back
+      respond_to do |format|
+        format.html {redirect_to :back }
+        format.js
+      end
     else
       flash[:danger] = "Comment cannot be blank"
       redirect_to :back

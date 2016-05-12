@@ -17,9 +17,9 @@
 	  <span id="post-<%= @post.id %>-score"><%= @post.get_upvotes.size - @post.get_downvotes.size %></span>
 	</span>
 
-	<div class="image_link_show_page"><%= sanitize image_tag(full_url(@post.image_link)) %></div>
+	<div class="image_link_show_page"><%= image_tag(full_url(@post.image_link)) %></div>
 
-	<span style="font-size:2em;"><%= sanitize link_to "check it out", full_url(@post.buy_link), target: '_blank' %></span>
+	<span style="font-size:2em;"><%= link_to "check it out", full_url(@post.buy_link), target: '_blank' %></span>
 
 	<% if current_user?(@post.user) || (logged_in? && current_user.admin?) %>
 		<div class="btn-group pull-right">
@@ -35,7 +35,7 @@
 		<h3 class="comments_title"><%= @post.comments.count %> Comments</h3>
 
 		<% if logged_in? %>
-				<%= form_for [@post, @post.comments.build] do |f| %>
+				<%= form_for [@post, @post.comments.build], remote: true do |f| %>
 				<%= render 'shared/error_messages', object: f.object %>
 				<div class="field">
 					<%= f.text_area :body, class: 'form-control' %>
