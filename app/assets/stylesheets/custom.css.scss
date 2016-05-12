@@ -67,6 +67,8 @@ a{
   color: $main-color;
 }
 
+ol, ol li { margin-left: 0; padding-left: 0; }
+
 
 /* header */
 
@@ -223,6 +225,9 @@ input {
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
+  & > li:last-child{
+    border: 0;
+  }
 }
 
 /* Categories index */
@@ -239,6 +244,9 @@ input {
     overflow: auto;
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
+  }
+  & > li:last-child{
+    border: 0;
   }
   .category_name{
     font-size: 1.2em;

@@ -15,6 +15,7 @@ class Post < ActiveRecord::Base
 
   def self.search(search)
     where("image_link like ?", "%#{search}%")
+    where("buy_link like ?", "%#{search}%")
   end
 
 
