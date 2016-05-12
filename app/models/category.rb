@@ -14,9 +14,9 @@ class Category < ActiveRecord::Base
 	end
 
 	def self.search(search)
-    where("name like ?", "%#{search}%")
-    where("slug like ?", "%#{search}%")
-    where("description like ?", "%#{search}%")
+    where("lower(name) like ?", "%#{search}%".downcase)
+    where("lower(slug) like ?", "%#{search}%".downcase)
+    where("lower(description) like ?", "%#{search}%".downcase)
   end
 
 end

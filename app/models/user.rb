@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
 	end
 
 	def self.search(search)
-		where("username like ?", "%#{search}%")
+		where("lower(username) like ?", "%#{search}%".downcase)
 	end
 
 end

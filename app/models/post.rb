@@ -14,8 +14,8 @@ class Post < ActiveRecord::Base
   end
 
   def self.search(search)
-    where("image_link like ?", "%#{search}%")
-    where("buy_link like ?", "%#{search}%")
+    where("lower(image_link) like ?", "%#{search}%".downcase)
+    where("lower(buy_link) like ?", "%#{search}%".downcase)
   end
 
 
