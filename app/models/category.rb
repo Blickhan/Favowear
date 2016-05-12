@@ -13,4 +13,10 @@ class Category < ActiveRecord::Base
 		slug
 	end
 
+	def self.search(search)
+    where("name like ?", "%#{search}%")
+    where("slug like ?", "%#{search}%")
+    where("description like ?", "%#{search}%")
+  end
+
 end

@@ -1,19 +1,9 @@
 <li id="post-<%= post.id %>" class="col-md-3">
   <div class="post-container">
     <div class="post-image-container">
-    <div class="image_link"><%= link_to image_tag(full_url(post.image_link)), post %></div>
+    <div class="image_link"><%= sanitize link_to image_tag(full_url(post.image_link)), post %></div>
     </div>
     <div class="post-details-container">
-    <span class="category">
-      <%= link_to url_for(post.category), post.category %>
-      <% if logged_in? && current_user.admin? %>
-        <div class="btn-group pull-right">
-          <%= link_to post, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-danger btn-xs pull-right" do %>
-            <i class="fa fa-times" aria-hidden="true"></i>
-          <% end %>
-        </div>
-      <% end %>
-    </span>
     <span class="voting">
     	<div class="btn-group-vertical">
   	    <% active_css = logged_in? && current_user?(current_user) && current_user.voted_up_on?(post) ? "active" : "" %>
@@ -30,7 +20,17 @@
       <span class="pull-right">(<%= post.comments.count %>)</span>
     </span>
 
-    <span class="buy_link"><%= link_to "check it out", full_url(post.buy_link), target: '_blank' %></span>
+    <span class="buy_link"><%= sanitize link_to "check it out", full_url(post.buy_link), target: '_blank' %></span>
+    <span class="category">
+      <%= link_to url_for(post.category), post.category %>
+      <% if logged_in? && current_user.admin? %>
+        <div class="btn-group pull-right">
+          <%= link_to post, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-danger btn-xs pull-right" do %>
+            <i class="fa fa-times" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </span>
     <span class="post_footer">
       <span class="timestamp">Posted <%= time_ago_in_words(post.created_at) %> ago by </span>
       <span class="user"><%= link_to post.user.username, post.user %></span>.

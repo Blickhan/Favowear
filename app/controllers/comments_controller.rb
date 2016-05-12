@@ -18,8 +18,11 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    flash[:success] = "Comment deleted"
-    redirect_to :back
+    
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.js
+    end
   end
 
   private

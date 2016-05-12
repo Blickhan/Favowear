@@ -1,0 +1,4 @@
+$("#comment-<%= @comment.id %>").hide('slow', function (){
+
+	$(this).parentElement.removeChild($(this));
+});

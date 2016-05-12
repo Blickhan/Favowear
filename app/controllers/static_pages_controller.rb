@@ -28,10 +28,12 @@ class StaticPagesController < ApplicationController
   end
 
   def search
-    @feed_items = Post.all
+    @categories = Category.all
+    @posts = Post.all
+
     if params[:search]
-      @feed_items = @feed_items.search(params[:search]).paginate(page: params[:page])
-      render 'home'
+      @categories = @categories.search(params[:search]).paginate(page: params[:page], per_page: 8)
+      @posts = @posts.search(params[:search]).paginate(page: params[:page], per_page: 8)
     else
       redirect_to root_path
     end
