@@ -64,4 +64,8 @@ class User < ActiveRecord::Base
 		categories.include?(category)
 	end
 
+	def self.search(search)
+		where("username like ?", "%#{search}%")
+	end
+
 end

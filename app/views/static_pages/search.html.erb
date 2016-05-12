@@ -1,16 +1,35 @@
-<div class="row"><h3>Categories</h3></div>
-<div class="row" id="search_categories_feed">
-  <ul class="categories">
-    <%= render @categories %>
-  </ul>
-  <%= will_paginate @categories %>
-</div>
-<div class="row"><h3>Posts</h3></div>
-<div class="row" id="search_posts_feed">
-  <% if @posts.any? %>
-  <ol class="posts">
-    <%= render @posts %>
-  </ol>
-  <%= will_paginate @posts %>
-  <% else %>
-</div>
+<h1>Search for "<%= @search_term %>"</h1>
+
+<% if @users.any? %>
+  <div class="row"><h3>Users (<%= @users.count %>)</h3></div>
+  <div class="row" id="search_users_feed"> 
+    <ul class="users">
+      <%= render @users %>
+    </ul>
+    <%= will_paginate @users %>
+  </div>
+<% end %>
+
+<% if @categories.any? %>
+  <div class="row"><h3>Categories (<%= @categories.count %>)</h3></div>
+  <div class="row" id="search_categories_feed">
+    <ul class="categories">
+      <%= render @categories %>
+    </ul>
+    <%= will_paginate @categories %>
+  </div>
+<% end %>
+
+<% if @posts.any? %>
+  <div class="row"><h3>Posts (<%= @posts.count %>)</h3></div>
+  <div class="row" id="search_posts_feed">
+    <ol class="posts">
+      <%= render @posts %>
+    </ol>
+    <%= will_paginate @posts %>
+  </div>
+<% end %>
+
+<% if !@users.any? && !@categories.any? && !@posts.any? %>
+  <h3>No results found.</h3>
+<% end %>

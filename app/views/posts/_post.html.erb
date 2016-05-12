@@ -1,7 +1,7 @@
 <li id="post-<%= post.id %>" class="col-md-3">
   <div class="post-container">
     <div class="post-image-container">
-    <div class="image_link"><%= sanitize link_to image_tag(full_url(post.image_link)), post %></div>
+    <div class="image_link"><%= link_to image_tag(full_url(post.image_link)), post %></div>
     </div>
     <div class="post-details-container">
     <span class="voting">
@@ -20,7 +20,7 @@
       <span class="pull-right">(<%= post.comments.count %>)</span>
     </span>
 
-    <span class="buy_link"><%= sanitize link_to "check it out", full_url(post.buy_link), target: '_blank' %></span>
+    <span class="buy_link"><%= link_to "check it out", full_url(post.buy_link), target: '_blank' %></span>
     <span class="category">
       <%= link_to url_for(post.category), post.category %>
       <% if logged_in? && current_user.admin? %>
