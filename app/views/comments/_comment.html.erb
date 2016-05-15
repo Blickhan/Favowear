@@ -1,8 +1,8 @@
 <li id="comment-<%= comment.id %>">
 	<div class="comment_wrapper">
 		<div class="comment">
-			
-			<span><%= link_to comment.user.username, comment.user %> | <small><%= time_ago_in_words(comment.created_at) %></small></span>
+			<% class_name = comment.user == comment.post.user ? "op_user" : "" %>
+			<span><%= link_to comment.user.username, comment.user, class: "#{class_name}" %> | <small><%= time_ago_in_words(comment.created_at) %></small></span>
 			<div class="row">
 			<p class="col-md-11"><%= comment.body %></p>
 			
