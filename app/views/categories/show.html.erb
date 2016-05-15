@@ -1,4 +1,5 @@
 <% provide(:title, @category.name) %>
+<% provide(:meta_description, "Category: " + @category.name + " - " + @category.description) %>
 <div class="row">
   <section class="category_info">
     <h1><%= @category.name %></h1>
