@@ -1,15 +1,20 @@
 <% provide(:title, @category.name) %>
 <% provide(:meta_description, "Category: " + @category.name + " - " + @category.description) %>
-<div class="row">
-  <section class="category_info">
-    <h1><%= @category.name %></h1>
-  </section>
+
+<div class="row"><span class="col-md-10 category_info"><h1><%= @category.name %></h1></span>
+  <span class="col-md-2 pull-right">
+  	<%= form_tag(fetch_category_posts_path, method: :get, remote: true, id: "date_filter_form") do %>
+    	<div class="field">
+    	<%= select_tag(:date_filter, 
+    			options_for_select([['Day', 1], ['Week', 2], ['Month',3], ['Year',4], ['All Time',5]], @date_filter),
+    													onchange: "$(this.form).submit();", 
+    													class: "form-control" ) %>
+    	
+    	</div>
+      <%= hidden_field_tag :id, @category.slug %>
+  	<% end %>
+  </span>
 </div>
-<div class="row">
-  <% if @posts.any? %>
-    <ol class="posts">
-      <%= render @posts %>
-    </ol>
-    <%= will_paginate @posts %>
-  <% end %>
+<div class="row" id="category_feed">
+  <%= render 'feed' %>
 </div>
