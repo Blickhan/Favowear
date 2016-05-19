@@ -79,7 +79,7 @@ $gray-medium-dark: #888888;
 .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus,{
     color: #000;
 }
-@media screen and (max-device-width: 991px) {
+@media screen and (max-width: 991px) {
     
     .nav-icon{
         display: none;
@@ -101,20 +101,20 @@ $gray-medium-dark: #888888;
         font-size: 300%; 
     }
     #search_form{
-        height: 150px;
+        height: auto;
         width: calc(100% - 375px);
     }
-    #search{
-        padding: 29px 5px; 
+    #search{ 
         line-height: 28px;
-        font-size: 300%;
+        font-size: 200%;
     }
     #search_button{
-        height: 150px;
+        height: 100%;
         width: 100px;
         i{
             font-size: 350%;
         }        
+        border: 0;
     }
     .btn:not(#search_button) {
         padding: 8px 28px;
