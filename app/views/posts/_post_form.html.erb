@@ -1,6 +1,11 @@
 <%= form_for(@post) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
+    <p>
+      <small>
+        First, upload an image to your favorite image host (<a href="http://imgur.com/">imgur.com</a> maybe?)<br>Then, copy the link to it.
+      </small>
+    </p>
     <%= f.label "link to image" %>
     <%= f.text_field :image_link, placeholder: "Link to an image..." %>
   </div>
