@@ -37,7 +37,17 @@ class CategoriesController < ApplicationController
 	end
 
 	def index
-		@categories = Category.all.order(:name)
+    if params[:term]
+      @categories = Category.where('lower(name) like ?', "%#{params[:term].downcase}%")
+    else
+  		@categories = Category.all.order(:name)
+    end
+
+    respond_to do |format|
+      format.html
+
+      format.json { render :json => @categories.to_json }
+    end
 	end
 
 	def show

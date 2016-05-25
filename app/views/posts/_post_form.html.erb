@@ -15,7 +15,33 @@
   </div>
   <div class="field">
     <%= f.label "category" %>
-    <%= f.select :category_id, options_from_collection_for_select(@categories,'id', 'name'), :prompt => "Select one" %>
+    <%= #f.select :category_id, options_from_collection_for_select(@categories,'id', 'name'), :prompt => "Select one" 
+    %>
+    <input id="select_category" placeholder="Which category does this belong to..."/>
+    <input id="post_category_id" name="post[category_id]" type="hidden"/>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
+
+<script type="text/javascript">
+
+  $(function() {
+ 
+  $('#select_category').autocomplete({
+          minLength: 2,
+          source: '<%= categories_path(:json) %>',
+          autoFocus: true,
+          select: function(event, ui) {
+              $('#select_category').val(ui.item.name);
+              $("#post_category_id").val(ui.item.id);
+              return false;
+          }
+      })
+      .data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+          return $( "<li></li>" )
+              .data( "item.autocomplete", item )
+              .append( "<a>" + item.name + "</a>" )
+              .appendTo( ul );
+      };
+  });
+</script>

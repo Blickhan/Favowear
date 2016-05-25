@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
 	def new
 		@post = Post.new
-		@categories = Category.all.order(:name)
+		#@categories = Category.all.to_json
 	end
 
 	def create
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 				flash[:success] = "Post created."
 				redirect_to root_url
 		else
-			@categories = Category.all.order(:name)
+			#@categories = Category.all.to_json
 			render 'new'
 		end
 	end
