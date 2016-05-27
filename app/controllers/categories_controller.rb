@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
 	before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
 	before_action :admin_user,     only: [:edit, :update, :destroy]
 	before_action :find_category, only: [:show, :edit, :update, :destroy, :filter_posts]
+  before_action :creating_too_much, only: :create
 
 	def new 
 		@category = Category.new
@@ -101,6 +102,14 @@ class CategoriesController < ApplicationController
           @posts
         else
           @posts.where(:created_at => 1.day.ago..Time.now)
+      end
+    end
+
+    def creating_too_much
+      categories_per_period = 2
+      if Category.where('user_id = ? and created_at > ?', current_user.id, 15.minutes.ago).count >= categories_per_period && !current_user.admin?
+        flash[:danger] = "You're creating categories too much. Two categories per 15 minutes are allowed."
+        redirect_to new_category_path
       end
     end
 

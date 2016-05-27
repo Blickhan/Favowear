@@ -17,11 +17,14 @@
 	  <%= f.label :description %>
 	  <%= f.text_area :description, class: 'form-control' %>
 
-	  <%= f.label :is_default, :class => "checkbox" do %>
-		  Default<%= f.check_box :is_default, :style => "vertical-align:middle;width:20%;" %>
-		  <% end %>
+	  <% if logged_in? && current_user.admin? %>
+		  <%= f.label :is_default, :class => "checkbox" do %>
+			  Default<%= f.check_box :is_default, id: "category_default_checkbox" %>
+			  <% end %>
+		<% end %>
 
 	  <%= f.submit "Create", class: "btn btn-primary" %>
+	  <span style="color:red">You will not be able to edit this category after it is created.</span>
 	<% end %>
   </div>
 </div>
