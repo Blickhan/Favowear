@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
 	before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
-	before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy]
+	before_action :admin_user,     only: [:edit, :update, :destroy]
 	before_action :find_category, only: [:show, :edit, :update, :destroy, :filter_posts]
 
 	def new 
@@ -9,6 +9,7 @@ class CategoriesController < ApplicationController
 
 	def create
 		@category = Category.new(category_params)
+    @category.user_id = current_user.id
     if @category.save
     	flash[:success] = "Category created."
       redirect_to categories_path
