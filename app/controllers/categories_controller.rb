@@ -75,7 +75,11 @@ class CategoriesController < ApplicationController
 	private
 
     def category_params
-      params.require(:category).permit(:name, :slug, :description, :is_default)
+      if current_user.admin?
+        params.require(:category).permit(:name, :slug, :description, :is_default)
+      else
+        params.require(:category).permit(:name, :slug, :description)
+      end
     end    
 
     def find_category
