@@ -1,11 +1,18 @@
 <li id="post-<%= post.id %>" class="col-md-3">
   <div class="post-container">
+    <% if logged_in? && (post.user.id == current_user.id || current_user.admin?) %>
+      <div title="delete post?" class="btn-group delete-button">
+        <%= link_to post, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-danger btn-xs" do %>
+          <i class="fa fa-times" aria-hidden="true"></i>
+        <% end %>
+      </div>
+    <% end %>
     <div class="post-image-container">
     <div class="image_link"><%= link_to image_tag(full_url(post.image_link)), post %></div>
     </div>
     <div class="post-details-container">
     <span class="voting">
-    	<div class="btn-group-vertical">
+    	<div title="vote on this post" class="btn-group-vertical">
   	    <% active_css = logged_in? && current_user?(current_user) && current_user.voted_up_on?(post) ? "active" : "" %>
         <% use_ajax = logged_in? %>
         <%= link_to upvote_post_path(post), method: :put, remote: use_ajax, id: "upvote-" + post.id.to_s + "-button", class: "btn btn-xs btn-warning #{active_css}" do %>
@@ -16,24 +23,15 @@
   	    	<i class="fa fa-arrow-down" aria-hidden="true"></i>
   	    <% end %>
       </div>
-      <span id="post-<%= post.id %>-score"><%= post.get_upvotes.size - post.get_downvotes.size %></span>
-      <span class="pull-right">(<%= post.comments.count %>)</span>
+      <span title="post score" id="post-<%= post.id %>-score"><%= post.get_upvotes.size - post.get_downvotes.size %></span>
+      <span title="go to site where it's sold" class="buy_link pull-right"><%= link_to "check it out", full_url(post.buy_link), target: '_blank' %></span>
+      <br>
+      <span title="category" class="category pull-right"><%= link_to post.category.name, post.category %></span>
     </span>
-
-    <span class="buy_link"><%= link_to "check it out", full_url(post.buy_link), target: '_blank' %></span>
-    <span class="category">
-      <%= link_to url_for(post.category), post.category %>
-      <% if logged_in? && current_user.admin? %>
-        <div class="btn-group pull-right">
-          <%= link_to post, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-danger btn-xs pull-right" do %>
-            <i class="fa fa-times" aria-hidden="true"></i>
-          <% end %>
-        </div>
-      <% end %>
-    </span>
+    <span><%= post.comments.count %> Comments</span>
     <span class="post_footer">
       <span class="timestamp">Posted <%= time_ago_in_words(post.created_at) %> ago by </span>
-      <span class="user"><%= link_to post.user.username, post.user %></span>.
+      <span title="<%= post.user.username %>: <%= post.user.style_points %> stylepoints" class="user"><%= link_to post.user.username, post.user %></span>.
     </span>
     </div>
   </div>

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   	#@user = User.find(params[:id])
     @posts = @user.posts.paginate(page: params[:page])
 
-    @stylepoints = style_points(@user)
+    @stylepoints = @user.style_points
   end
 
   def create
@@ -72,14 +72,6 @@ class UsersController < ApplicationController
       #@user = User.find(params[:id])
       find_user
       redirect_to(root_url) unless @user == current_user || current_user.admin?
-    end
-
-    def style_points(user)
-      @sum = 0
-      user.posts.each do |post|
-        @sum += (post.get_upvotes.size - post.get_downvotes.size)
-      end
-      @sum
     end
 
     def find_user

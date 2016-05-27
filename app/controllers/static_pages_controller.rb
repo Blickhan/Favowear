@@ -7,6 +7,13 @@ class StaticPagesController < ApplicationController
     @feed_items = filter_by_date(@date_filter).paginate(page: params[:page])
   end
 
+  def all
+    @date_filter = session[:date_filter] || 1
+    @feed_items = Post.all
+    @feed_items = filter_by_date(@date_filter).paginate(page: params[:page])
+    render 'all'
+  end
+
   def filter_posts
     @date_filter = params[:date_filter]
     session[:date_filter] =  @date_filter

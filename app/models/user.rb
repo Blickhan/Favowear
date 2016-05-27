@@ -69,4 +69,12 @@ class User < ActiveRecord::Base
 		where("lower(username) like ?", "%#{search}%".downcase)
 	end
 
+	def style_points
+      sum = 0
+      self.posts.each do |post|
+        sum += (post.get_upvotes.size - post.get_downvotes.size)
+      end
+      sum
+    end
+
 end

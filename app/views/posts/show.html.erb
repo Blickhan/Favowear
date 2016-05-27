@@ -1,5 +1,5 @@
 <div class="page-header">
-	<h1><small>submitted <%= time_ago_in_words(@post.created_at) %> ago by <%= link_to @post.user.username, @post.user %></small></h1>
+	<h1 style="text-align:center"><small>submitted <%= time_ago_in_words(@post.created_at) %> ago by <%= link_to @post.user.username, @post.user %></small></h1>
 </div>
 <div class="post_show_page_container">
 	<span class="voting">	
@@ -27,7 +27,7 @@
 		</div>
 	<% end %>
 
-	<div class="category" style="font-size:1.2em"><%= link_to url_for(@post.category), @post.category %></div>
+	<div class="category" style="font-size:1.2em"><%= link_to @post.category.name, @post.category %></div>
 </div>
 
 <div class="row">
