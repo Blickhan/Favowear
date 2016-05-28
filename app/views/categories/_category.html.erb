@@ -17,7 +17,7 @@
     <span style="font-size:.8em;padding:3px;color:red;border: 2px solid red;border-radius:3px;">Default</span>
   <% end %>
 
-  <span class="category_description"><%= category.description %></span>
+  <span class="category_description"><i><%= category.users.count %> followers</i>. <%= category.description %></span>
 
   <% if logged_in? && current_user.admin? %>
     <%= link_to category, method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-xs btn-danger pull-right" do %>
