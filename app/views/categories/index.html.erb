@@ -5,6 +5,10 @@
 	<%= link_to "Create new Category", new_category_path, class: "btn btn-primary" %>
 <% end %>
 
+<%= will_paginate %>
+
 <ul class="categories">
   <%= render @categories %>
 </ul>
+
+<%= will_paginate %>

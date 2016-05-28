@@ -291,6 +291,11 @@ input {
   .post-details-container{
     border-top: 1px solid $border-color;
     padding-top: 5px;
+    .category{
+    }
+    .comment_count{
+    }
+
   }
   .image_link {
     margin-top: 100%;
@@ -313,7 +318,6 @@ input {
   }
   .buy_link {
     display: block;
-    
   }
   .post_footer{
     display: block;

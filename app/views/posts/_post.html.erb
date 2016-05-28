@@ -24,11 +24,11 @@
   	    <% end %>
       </div>
       <span title="post score" id="post-<%= post.id %>-score"><%= post.get_upvotes.size - post.get_downvotes.size %></span>
-      <span title="go to site where it's sold" class="buy_link pull-right"><%= link_to "check it out", full_url(post.buy_link), target: '_blank' %></span>
+      <span title="go to the site where it's sold" class="buy_link pull-right"><%= link_to "check it out", full_url(post.buy_link), target: '_blank' %></span>
       <br>
       <span title="category" class="category pull-right"><%= link_to post.category.name, post.category %></span>
     </span>
-    <span><%= post.comments.count %> Comments</span>
+    <span class="comment_count"><%= post.comments.count %> Comments</span>
     <span class="post_footer">
       <span class="timestamp">Posted <%= time_ago_in_words(post.created_at) %> ago by </span>
       <span title="<%= post.user.username %>: <%= post.user.style_points %> stylepoints" class="user"><%= link_to post.user.username, post.user %></span>.

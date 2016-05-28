@@ -4,20 +4,20 @@ class StaticPagesController < ApplicationController
 
   def home
     @date_filter = session[:date_filter] || 1
-    @feed_items = filter_by_date(@date_filter).paginate(page: params[:page])
+    @feed_items = filter_by_date(@date_filter).paginate(page: params[:page], per_page: 32)
   end
 
   def all
     @date_filter = session[:date_filter] || 1
     @feed_items = Post.all
-    @feed_items = filter_by_date(@date_filter).paginate(page: params[:page])
+    @feed_items = filter_by_date(@date_filter).paginate(page: params[:page], per_page: 32)
     render 'all'
   end
 
   def filter_posts
     @date_filter = params[:date_filter]
     session[:date_filter] =  @date_filter
-    @feed_items = filter_by_date(@date_filter).paginate(page: params[:page])
+    @feed_items = filter_by_date(@date_filter).paginate(page: params[:page], per_page: 32)
 
     respond_to do |format|
         format.html {redirect_to :back }
@@ -59,9 +59,9 @@ class StaticPagesController < ApplicationController
 
     def get_feed
       if logged_in?
-        @feed_items = current_user.feed.paginate(page: params[:page])
+        @feed_items = current_user.feed
       else
-        @feed_items = Post.joins(:category).where(categories: { is_default: true }).paginate(page: params[:page])
+        @feed_items = Post.joins(:category).where(categories: { is_default: true })
       end
     end
 

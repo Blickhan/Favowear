@@ -42,7 +42,7 @@ class CategoriesController < ApplicationController
     if params[:term]
       @categories = Category.where('lower(name) like ?', "%#{params[:term].downcase}%")
     else
-  		@categories = Category.all.order(:name)
+  		@categories = Category.all.order(:name).paginate(page: params[:page])
     end
 
     respond_to do |format|
@@ -53,7 +53,6 @@ class CategoriesController < ApplicationController
 	end
 
 	def show
-		params[:id] = params[:id]
 		@date_filter = session[:date_filter] || 1
   	#@category = Category.find_by(slug: params[:slug])
     @posts = @category.posts.all
