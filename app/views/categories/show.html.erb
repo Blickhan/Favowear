@@ -1,8 +1,12 @@
 <% provide(:title, @category.name) %>
 <% provide(:meta_description, "Category: " + @category.name + " - " + @category.description) %>
 
-<div class="row"><span class="col-md-10 category_info"><h1><%= @category.name %></h1></span>
-  <span class="col-md-2 pull-right">
+<div class="row">
+  <span class="col-md-8 category_info"><h1><%= @category.name %></h1></span>
+  <span id="filter_label" class="col-md-2">
+    <%= label_tag 'Filter:', nil, class:"pull-right"   %>
+  </span>
+  <span id="date_filter_form_wrapper" class="col-md-2">
   	<%= form_tag(fetch_category_posts_path, method: :get, remote: true, id: "date_filter_form") do %>
     	<div class="field">
     	<%= select_tag(:date_filter, 
