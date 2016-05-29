@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527211851) do
+ActiveRecord::Schema.define(version: 20160529152831) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -21,10 +21,12 @@ ActiveRecord::Schema.define(version: 20160527211851) do
     t.string   "slug"
     t.boolean  "is_default",  default: false
     t.integer  "user_id"
+    t.integer  "users_count", default: 0
   end
 
   add_index "categories", ["is_default"], name: "index_categories_on_is_default"
   add_index "categories", ["slug"], name: "index_categories_on_slug"
+  add_index "categories", ["users_count"], name: "index_categories_on_users_count"
 
   create_table "comments", force: :cascade do |t|
     t.integer  "post_id"

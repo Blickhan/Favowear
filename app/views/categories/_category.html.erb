@@ -19,7 +19,7 @@
 
   <br>
 
-  <span class="category_description"><i><span id="follower-count-<%= category.id %>"><%= category.users.count %></span> followers</i>. <%= category.description %></span>
+  <span class="category_description"><i><span id="follower-count-<%= category.id %>"><%= category.users_count %></span> followers</i>. <%= category.description %></span>
 
   <% if logged_in? && current_user.admin? %>
     <%= link_to category, method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-xs btn-danger pull-right" do %>

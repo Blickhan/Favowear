@@ -5,16 +5,20 @@
 		<%= link_to "Create new Category", new_category_path, class: "btn btn-primary" %>
 	<% end %>
 
-	<span class="col-md-2 pull-right">
+	<span id="order_dropdown" class="col-md-2 pull-right">	
 	  <%= form_tag(fetch_categories_path, method: :get, remote: true, id: "order_categories_form") do %>
+	    
 	    <div class="field">
 	    	<%= select_tag(:category_order, 
-	    			options_for_select([['Name ASC', 1], ['Name DESC', 2]], @category_order), 
+	    			options_for_select([['Name', 1], ['# Followers', 2]], @category_order), 
 	    													onchange: "$(this.form).submit();", 
 	    													class: "form-control" ) %>
 	    	
 	  	</div>
 		<% end %>
+	</span>
+	<span id="order_label" class="pull-right col-md-2">
+		<%= label_tag 'Order by:', nil, class:"pull-right"   %>
 	</span>
 
 <div id="category_list">

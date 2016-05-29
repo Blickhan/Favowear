@@ -112,7 +112,7 @@ class CategoriesController < ApplicationController
         when '1' #name
           @categories = Category.all.order('name ASC')
         when '2' #follower count
-          @categories = Category.all.order('name DESC')
+          @categories = Category.all.order('users_count DESC').order('name ASC')
         else
           @categories = Category.all.order('name ASC')
       end
