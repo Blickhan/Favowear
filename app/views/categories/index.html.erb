@@ -1,14 +1,21 @@
 <% provide(:title, 'Categories') %>
 <h1>Categories</h1>
 
-<% if logged_in? %>
-	<%= link_to "Create new Category", new_category_path, class: "btn btn-primary" %>
-<% end %>
+	<% if logged_in? %>
+		<%= link_to "Create new Category", new_category_path, class: "btn btn-primary" %>
+	<% end %>
 
-<%= will_paginate %>
+  <%= form_tag(fetch_categories_path, method: :get, remote: true, id: "order_categories_form") do %>
+    <div class="field">
+    	<%= select_tag(:category_order, 
+    			options_for_select([['Name', 1], ['Follower Count', 2]], @category_order), 
+    													onchange: "$(this.form).submit();", 
+    													class: "form-control" ) %>
+    	
+  	</div>
+	<% end %>
 
-<ul class="categories">
-  <%= render @categories %>
-</ul>
 
-<%= will_paginate %>
+<div id="category_list">
+	<%= render 'category_list' %>
+</div>

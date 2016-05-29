@@ -24,7 +24,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to root_path do %><i class="nav-icon fa fa-home" aria-hidden="true"></i> <span class="nav-text">Home</span><% end %></li>
           <li class="<%= 'active' if current_page?(categories_path) %>"><%= link_to categories_path do %><i class="nav-icon fa fa-tags" aria-hidden="true"></i> <span class="nav-text">Categories</span><% end %></li>
-          <!--<li><%= link_to "Help", help_path %></li>-->
+          
           <% if logged_in? %>
             <li class="<%= 'active' if current_page?(new_post_path) %>"><%= link_to new_post_path do %><i class="nav-icon fa fa-send" aria-hidden="true"></i> <span class="nav-text">Post</span><% end %></li>
             

@@ -1,0 +1,13 @@
+<% if @categories.any? %>
+    <%= will_paginate %>
+
+		<ul class="categories">
+			<li>
+			  <span class="category_name"><%= link_to "All", c_all_path %></span><br>
+			  <span class="category_description">Every category in one place.</span>
+			</li>
+		  <%= render @categories %>
+		</ul>
+
+		<%= will_paginate %>
+<% end %>

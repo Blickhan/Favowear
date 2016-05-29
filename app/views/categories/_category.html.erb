@@ -17,6 +17,8 @@
     <span style="font-size:.8em;padding:3px;color:red;border: 2px solid red;border-radius:3px;">Default</span>
   <% end %>
 
+  <br>
+
   <span class="category_description"><i><%= category.users.count %> followers</i>. <%= category.description %></span>
 
   <% if logged_in? && current_user.admin? %>

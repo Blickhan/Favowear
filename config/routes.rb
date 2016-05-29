@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   get 'sessions/new'
   get 'users/new'
 	root 'static_pages#home'
-  get 'all' => 'static_pages#all'
   get "/fetch_posts" => 'static_pages#filter_posts', as: 'fetch_posts'
   get "/fetch_category_posts" => 'categories#filter_posts', as: 'fetch_category_posts'
+  get "/fetch_categories" => 'categories#order_categories', as: 'fetch_categories'
+  get "/c/all" => 'categories#all' #pseudocategory
   get 'search' => 'static_pages#search'
   get 'help' => 'static_pages#help'
   get 'about' => 'static_pages#about'

@@ -7,13 +7,6 @@ class StaticPagesController < ApplicationController
     @feed_items = filter_by_date(@date_filter).paginate(page: params[:page], per_page: 32)
   end
 
-  def all
-    @date_filter = session[:date_filter] || 1
-    @feed_items = Post.all
-    @feed_items = filter_by_date(@date_filter).paginate(page: params[:page], per_page: 32)
-    render 'all'
-  end
-
   def filter_posts
     @date_filter = params[:date_filter]
     session[:date_filter] =  @date_filter
@@ -77,6 +70,8 @@ class StaticPagesController < ApplicationController
           @feed_items.where(:created_at => 365.day.ago..Time.now)
         when '5' #all time
           @feed_items
+        when '6' #newest
+          @feed_items.reorder('created_at DESC')
         else
           @feed_items.where(:created_at => 1.day.ago..Time.now)
       end

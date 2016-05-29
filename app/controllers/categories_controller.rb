@@ -39,10 +39,12 @@ class CategoriesController < ApplicationController
 	end
 
 	def index
+    @category_order = session[:category_order] || 1
     if params[:term]
       @categories = Category.where('lower(name) like ?', "%#{params[:term].downcase}%")
     else
-  		@categories = Category.all.order(:name).paginate(page: params[:page])
+  		@categories = order_by_selection(@category_order).paginate(page: params[:page])
+      #Category.all.order(:name).paginate(page: params[:page])
     end
 
     respond_to do |format|
@@ -56,7 +58,25 @@ class CategoriesController < ApplicationController
 		@date_filter = session[:date_filter] || 1
   	#@category = Category.find_by(slug: params[:slug])
     @posts = @category.posts.all
-    @posts = filter_by_date(@date_filter).paginate(page: params[:page])
+    @posts = filter_by_date(@date_filter).paginate(page: params[:page], per_page: 32)
+  end
+
+  def all # acts as a pseudocategory
+    @date_filter = session[:date_filter] || 1
+    @posts = Post.all
+    @feed_items = filter_by_date(@date_filter).paginate(page: params[:page], per_page: 32)
+    render 'all'
+  end
+
+  def order_categories
+    @category_order = params[:category_order]
+    session[:category_order] =  @category_order
+    @categories = order_by_selection(@category_order).paginate(page: params[:page])
+
+    respond_to do |format|
+        format.html {redirect_to :back }
+        format.js
+    end
   end
 
   def filter_posts
@@ -87,6 +107,17 @@ class CategoriesController < ApplicationController
     	@category = Category.find_by_slug!(params[:id])
     end
 
+    def order_by_selection(category_order)
+      case category_order
+        when '1' #name
+          @categories = Category.all.order('name ASC')
+        when '2' #follower count
+          @categories = Category.all.order('name DESC')
+        else
+          @categories = Category.all.order('name ASC')
+      end
+    end
+
     def filter_by_date(date_filter)
       case date_filter
         when '1' #day
@@ -99,6 +130,8 @@ class CategoriesController < ApplicationController
           @posts.where(:created_at => 365.day.ago..Time.now)
         when '5' #all time
           @posts
+        when '6' #newest
+          @posts.reorder('created_at DESC')
         else
           @posts.where(:created_at => 1.day.ago..Time.now)
       end
