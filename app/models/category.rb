@@ -7,7 +7,7 @@ class Category < ActiveRecord::Base
 	VALID_CATEGORY_REGEX = /\A[A-Za-z0-9-]+\z/
 	validates :slug, uniqueness: true, presence: true, format: { with: VALID_CATEGORY_REGEX,
 																message: ' must only include letters, numbers, and hyphens'},
-										length: { maximum: 20 }, exclusion: { in: ['new']}
+										length: { maximum: 20 }, exclusion: { in: ['new','all']}
 	validates :description, length: { maximum: 64 }
 
 	def to_param
