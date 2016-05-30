@@ -24,7 +24,9 @@ task :follow_defaults => :environment do
 	desc "follows each default category for each user"
 	User.find_each do |user|
 		Category.where(is_default: true).each do |category|
-      user.follow(category)
+      if !user.following?(category)
+      	user.follow(category)
+    	end
     end
 	end
 
