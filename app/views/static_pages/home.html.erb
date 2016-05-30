@@ -1,11 +1,11 @@
 <% provide(:meta_description, "Your favorite things to wear. Making online shopping for clothes as easy as it gets.") %>
 
 <div class="row">
-  <span class="col-md-8"><h1 class="h1">Posts</h1></span>
-  <span id="filter_label" class="col-md-2">
+  <span class="col-sm-8"><h1 class="h1">Posts</h1></span>
+  <span id="filter_label" class="col-sm-2">
     <%= label_tag 'Filter:', nil, class:"pull-right"   %>
   </span>
-  <span id="date_filter_form_wrapper" class="col-md-2">
+  <span id="date_filter_form_wrapper" class="col-sm-2">
   	<%= form_tag(fetch_posts_path, method: :get, remote: true, id: "date_filter_form") do %>
     	<div class="field">
     	<%= select_tag(:date_filter, 
