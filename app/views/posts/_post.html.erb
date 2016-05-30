@@ -24,7 +24,7 @@
   	    	<i class="fa fa-arrow-down" aria-hidden="true"></i>
   	    <% end %>
       </div>
-      <span id="post-<%= post.id %>-score"><%= post.get_upvotes.size - post.get_downvotes.size %></span>
+      <span id="post-<%= post.id %>-score"><%= post.cached_votes_score %></span>
       
       <span class="category pull-right"><%= link_to post.category.name, post.category %></span><br>
       <span class="buy_link pull-right"><%= link_to "check it out", full_url(post.buy_link), target: '_blank' %></span>

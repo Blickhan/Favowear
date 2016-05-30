@@ -14,7 +14,7 @@
 	    	<i class="fa fa-arrow-down" aria-hidden="true"></i>
 	    <% end %>
 	  </div>
-	  <span id="post-<%= @post.id %>-score"><%= @post.get_upvotes.size - @post.get_downvotes.size %></span>
+	  <span id="post-<%= @post.id %>-score"><%= @post.cached_votes_score %></span>
 	</span>
 
 	<div class="image_link_show_page"><%= image_tag(full_url(@post.image_link)) %></div>

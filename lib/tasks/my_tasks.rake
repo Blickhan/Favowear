@@ -11,7 +11,15 @@ task :reset_stylepoints => :environment do
 	User.find_each do |user|
 		sum = 0
     user.posts.each do |post|
+    	# could probably use post.cached_votes_score but 
+    	# (post.get_upvotes.size - post.get_downvotes.size) works as well
       sum += (post.get_upvotes.size - post.get_downvotes.size)
+      # account for the post.user's vote and remove it
+      if user.voted_up_on? post
+      	sum -= 1
+      elsif user.voted_down_on? post
+      	sum += 1
+      end
     end
     user.update_attribute(:stylepoints, sum)
 	end

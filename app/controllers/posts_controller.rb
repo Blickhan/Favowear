@@ -34,22 +34,42 @@ class PostsController < ApplicationController
 
 	def upvote
 			@post = Post.find(params[:id])
-			@post.upvote_by current_user
-			@post.user.increase_stylepoints if @post.user != current_user
-			respond_to do |format|
-		    format.html {redirect_to :back }
-		    format.js
-		  end
+			# if already upvoted and button got clicked, unupvote and remove stylepoint
+			if current_user.voted_up_on? @post
+				@post.unliked_by current_user
+				@post.user.decrease_stylepoints if @post.user != current_user
+				respond_to do |format|
+			    format.html {redirect_to :back }
+			    format.js { render 'unvote.js.erb' }
+			  end
+			else
+				@post.upvote_by current_user
+				@post.user.increase_stylepoints if @post.user != current_user
+				respond_to do |format|
+			    format.html {redirect_to :back }
+			    format.js
+			  end
+			end
 	end
 
 	def downvote
 			@post = Post.find(params[:id])
-			@post.downvote_by current_user
-			@post.user.decrease_stylepoints if @post.user != current_user
-			respond_to do |format|
-		    format.html {redirect_to :back }
-		    format.js
-		  end
+			# if already downvoted and button got clicked, undownvote and give post.user back stylepoint
+			if current_user.voted_down_on? @post
+				@post.undisliked_by current_user
+				@post.user.increase_stylepoints if @post.user != current_user
+				respond_to do |format|
+			    format.html {redirect_to :back }
+			    format.js { render 'unvote.js.erb' }
+			  end
+			else
+				@post.downvote_by current_user
+				@post.user.decrease_stylepoints if @post.user != current_user
+				respond_to do |format|
+			    format.html {redirect_to :back }
+			    format.js
+			  end
+			end
 	end
 
 	private

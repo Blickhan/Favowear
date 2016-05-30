@@ -1,0 +1,4 @@
+$('#downvote-<%= @post.id %>-button').removeClass('active').blur();
+$('#upvote-<%= @post.id %>-button').removeClass('active').blur();
+$('#post-<%= @post.id %>-score').html('<%= @post.cached_votes_score %>')
+
