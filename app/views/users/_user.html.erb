@@ -1,7 +1,7 @@
 <li>
   <%= link_to user.username, user %>
   <% if logged_in? && current_user.admin? && !current_user?(user) %>
-    <%= link_to user, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-danger pull-right" do %>
+    <%= link_to user, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-ominous pull-right" do %>
     	<i class="fa fa-times" aria-hidden="true"></i>
     <% end %>
   <% end %>

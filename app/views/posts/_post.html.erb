@@ -2,7 +2,7 @@
   <div class="post-container">
     <% if logged_in? && (post.user.id == current_user.id || current_user.admin?) %>
       <div title="delete post?" class="btn-group delete-button">
-        <%= link_to post, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-danger btn-xs" do %>
+        <%= link_to post, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-ominous btn-xs" do %>
           <i class="fa fa-times" aria-hidden="true"></i>
         <% end %>
       </div>
@@ -16,11 +16,11 @@
     	<div title="vote on this post" class="btn-group-vertical">
   	    <% active_css = logged_in? && current_user?(current_user) && current_user.voted_up_on?(post) ? "active" : "" %>
         <% use_ajax = logged_in? %>
-        <%= link_to upvote_post_path(post), method: :put, remote: use_ajax, id: "upvote-" + post.id.to_s + "-button", class: "btn btn-xs btn-warning #{active_css}" do %>
+        <%= link_to upvote_post_path(post), method: :put, remote: use_ajax, id: "upvote-" + post.id.to_s + "-button", class: "btn btn-xs btn-upvote #{active_css}" do %>
   	    	<i class="fa fa-arrow-up" aria-hidden="true"></i>
   	    <% end %>
         <% active_css = logged_in? && current_user?(current_user) && current_user.voted_down_on?(post) ? "active" : "" %>
-  	    <%= link_to downvote_post_path(post), method: :put, remote: use_ajax, id: "downvote-" + post.id.to_s + "-button", class: "btn btn-xs btn-warning #{active_css}" do %>
+  	    <%= link_to downvote_post_path(post), method: :put, remote: use_ajax, id: "downvote-" + post.id.to_s + "-button", class: "btn btn-xs btn-downvote #{active_css}" do %>
   	    	<i class="fa fa-arrow-down" aria-hidden="true"></i>
   	    <% end %>
       </div>

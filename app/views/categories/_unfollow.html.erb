@@ -1,4 +1,4 @@
 <%= form_for(current_user.followings.find_by(category_id: @category.id),
            html: { method: :delete }, remote: true) do |f| %>
-	<%= f.submit "Unfollow", class: "btn btn-success btn-xs" %>
+	<%= f.submit "Unfollow", class: "btn btn-warm btn-xs" %>
 <% end %>

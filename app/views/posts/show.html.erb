@@ -6,11 +6,11 @@
 		<div class="btn-group-vertical">
 			<% active_css = logged_in? && current_user?(current_user) && current_user.voted_up_on?(@post) ? "active" : "" %>
 			<% use_ajax = logged_in? %>
-	    <%= link_to upvote_post_path(@post), method: :put, remote: use_ajax, id: "upvote-" + @post.id.to_s + "-button", class: "btn btn-sm btn-warning #{active_css}" do %>
+	    <%= link_to upvote_post_path(@post), method: :put, remote: use_ajax, id: "upvote-" + @post.id.to_s + "-button", class: "btn btn-sm btn-upvote #{active_css}" do %>
 	    	<i class="fa fa-arrow-up" aria-hidden="true"></i>
 	    <% end %>
 	    <% active_css = logged_in? && current_user?(current_user) && current_user.voted_down_on?(@post) ? "active" : "" %>
-	    <%= link_to downvote_post_path(@post), method: :put, remote: use_ajax, id: "downvote-" + @post.id.to_s + "-button", class: "btn btn-sm btn-warning #{active_css}" do %>
+	    <%= link_to downvote_post_path(@post), method: :put, remote: use_ajax, id: "downvote-" + @post.id.to_s + "-button", class: "btn btn-sm btn-downvote #{active_css}" do %>
 	    	<i class="fa fa-arrow-down" aria-hidden="true"></i>
 	    <% end %>
 	  </div>
@@ -23,7 +23,7 @@
 
 	<% if current_user?(@post.user) || (logged_in? && current_user.admin?) %>
 		<div class="btn-group pull-right">
-			<%= link_to 'Delete', @post, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+			<%= link_to 'Delete', @post, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-ominous" %>
 		</div>
 	<% end %>
 
@@ -40,7 +40,7 @@
 				<div class="field">
 					<%= f.text_area :body, class: 'form-control' %>
 				</div>
-				<%= f.submit "Comment", class: "btn btn-primary" %>
+				<%= f.submit "Comment", class: "btn btn-cool" %>
 
 				<% end %>
 		<% end %>

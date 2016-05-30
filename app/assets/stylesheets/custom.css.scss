@@ -8,6 +8,7 @@ $gray-medium-dark: #888888;
 $purp: #5A01A5;
 $border-color: #dedede;
 $main-color: #017f7f;
+$secondary-color: #00FF90;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -436,3 +437,44 @@ span.picture {
     border-width: 0;
   }
 }
+
+/* custom buttons */
+
+.btn-cool{
+  @include button-variant(white, $main-color, $main-color)
+}
+
+.btn-warm{
+  @include button-variant(white, #00cc74, #00cc74)
+}
+
+.btn-ominous{
+  @include button-variant(white, #d64843, #d64843)
+}
+
+.btn-upvote{
+  @include button-variant(#333, white, white);
+  &.active, &:focus, &:active, &:hover{
+    background-color: white;
+    color: #00cc74;
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid white;
+  }
+}
+
+.btn-downvote{
+  @include button-variant(#333, white, white);
+  &.active, &:focus, &:active, &:hover{
+    background-color: white;
+    color: #d64843;
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid white;
+  }
+}
+
