@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160529152831) do
+ActiveRecord::Schema.define(version: 20160530163354) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20160529152831) do
     t.string   "password_digest"
     t.string   "remember_digest"
     t.boolean  "admin",           default: false
+    t.integer  "stylepoints",     default: 0
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true

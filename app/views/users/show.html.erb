@@ -1,13 +1,13 @@
 <% provide(:title, @user.username) %>
-<% provide(:meta_description, "User profile for " + @user.username + ". User has " + @stylepoints.to_s + " stylepoints.") %>
+<% provide(:meta_description, "User profile for " + @user.username + ". User has " + @user.stylepoints.to_s + " stylepoints.") %>
 
 <div class="row">
   <section class="user_info">
     <h1>User Profile</h1>
     <h2><%= @user.username %></h2>
-    <div>Stylepoints: <b><%= @stylepoints %></b></div>
+    <div>Stylepoints: <b><%= @user.stylepoints %></b></div>
     <div>Posts: <b><%= @user.posts.count %></b></div>
-    <div>Average Stylepoints per Post: <b><%= '%.2f' % (@stylepoints.to_f / @user.posts.count.to_f) %></b></div>
+    <div>Average Stylepoints per Post: <b><%= '%.2f' % (@user.stylepoints.to_f / @user.posts.count.to_f) %></b></div>
     <div>Comments: <b><%= @user.comments.count %></b></div>
     <% if logged_in? && current_user?(@user) %>
       <div><a href="<%= categories_user_path(@user) %>">Followed Categories</a></div>

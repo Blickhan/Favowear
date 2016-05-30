@@ -37,6 +37,7 @@ class PostsController < ApplicationController
 	def upvote
 			@post = Post.find(params[:id])
 			@post.upvote_by current_user
+			@post.user.increase_stylepoints if @post.user != current_user
 			respond_to do |format|
 		    format.html {redirect_to :back }
 		    format.js
@@ -46,6 +47,7 @@ class PostsController < ApplicationController
 	def downvote
 			@post = Post.find(params[:id])
 			@post.downvote_by current_user
+			@post.user.decrease_stylepoints if @post.user != current_user
 			respond_to do |format|
 		    format.html {redirect_to :back }
 		    format.js

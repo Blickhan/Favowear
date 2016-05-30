@@ -24,9 +24,9 @@
   	    	<i class="fa fa-arrow-down" aria-hidden="true"></i>
   	    <% end %>
       </div>
-      <span title="post score" id="post-<%= post.id %>-score"><%= post.get_upvotes.size - post.get_downvotes.size %></span>
+      <span id="post-<%= post.id %>-score"><%= post.get_upvotes.size - post.get_downvotes.size %></span>
       
-      <span title="category" class="category pull-right"><%= link_to post.category.name, post.category %></span><br>
+      <span class="category pull-right"><%= link_to post.category.name, post.category %></span><br>
       <span class="buy_link pull-right"><%= link_to "check it out", full_url(post.buy_link), target: '_blank' %></span>
     
     </span>
@@ -35,7 +35,8 @@
     
     <span class="post_footer">
       <span class="timestamp">Posted <%= time_ago_in_words(post.created_at) %> ago by </span>
-      <span title="<%= post.user.username %>: <%= post.user.style_points %> stylepoints" class="user"><%= link_to post.user.username, post.user %></span>.
+      <span title='<%= "#{post.user.username}: #{pluralize(post.user.stylepoints, 'stylepoint')}" %>' 
+            class="user"><%= link_to post.user.username, post.user %></span>.
     </span>
     </div>
   </div>
