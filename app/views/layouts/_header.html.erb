@@ -26,7 +26,7 @@
           <li class="<%= 'active' if current_page?(categories_path) %>"><%= link_to categories_path do %><i class="nav-icon fa fa-tags" aria-hidden="true"></i> <span class="nav-text">Categories</span><% end %></li>
           
           <% if logged_in? %>
-            <li class="<%= 'active' if current_page?(new_post_path) %>"><%= link_to new_post_path do %><i class="nav-icon fa fa-send" aria-hidden="true"></i> <span class="nav-text">Post</span><% end %></li>
+            <li class="<%= 'active' if current_page?(new_post_path) %>"><%= link_to new_post_path do %><i class="nav-icon fa fa-camera-retro" aria-hidden="true"></i> <span class="nav-text">Post</span><% end %></li>
             
             <% if current_user.admin? %>
             <li class="dropdown">
