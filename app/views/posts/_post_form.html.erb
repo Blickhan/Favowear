@@ -25,23 +25,29 @@
 
 <script type="text/javascript">
 
-  $(function() {
+$(function() {
  
   $('#select_category').autocomplete({
-          minLength: 2,
-          source: '<%= categories_path(:json) %>',
-          autoFocus: true,
-          select: function(event, ui) {
-              $('#select_category').val(ui.item.name);
-              $("#post_category_id").val(ui.item.id);
-              return false;
-          }
-      })
-      .data( "uiAutocomplete" )._renderItem = function( ul, item ) {
-          return $( "<li></li>" )
-              .data( "item.autocomplete", item )
-              .append( "<a>" + item.name + "</a>" )
-              .appendTo( ul );
-      };
-  });
+      minLength: 2,
+      source: '<%= categories_path(:json) %>',
+      autoFocus: true,
+      select: function(event, ui) {
+          $('#select_category').val(ui.item.name);
+          $("#post_category_id").val(ui.item.id);
+          return false;
+      }
+  })
+  .data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+      return $( "<li></li>" )
+          .data( "item.autocomplete", item )
+          .append( "<a>" + item.name + "</a>" )
+          .appendTo( ul );
+  };
+
+
+}); 
+
+
+
+
 </script>

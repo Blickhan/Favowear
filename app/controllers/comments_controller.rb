@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: [:create, :destroy, :upvote, :downvote]
   before_action :correct_user, only: [:destroy]
   before_action :commenting_too_much, only: [:create]
 
@@ -28,6 +28,46 @@ class CommentsController < ApplicationController
       format.html {redirect_to :back }
       format.js
     end
+  end
+
+  def upvote
+      @comment = Comment.find(params[:id])
+      # if already upvoted and button got clicked, unupvote and remove stylepoint
+      if current_user.voted_up_on? @comment
+        @comment.unliked_by current_user
+        #@comment.user.decrease_stylepoints if @post.user != current_user
+        respond_to do |format|
+          format.html {redirect_to :back }
+          format.js { render 'unvote.js.erb' }
+        end
+      else
+        @comment.upvote_by current_user
+        #@comment.user.increase_stylepoints if @post.user != current_user
+        respond_to do |format|
+          format.html {redirect_to :back }
+          format.js
+        end
+      end
+  end
+
+  def downvote
+      @comment = Comment.find(params[:id])
+      # if already downvoted and button got clicked, undownvote and give post.user back stylepoint
+      if current_user.voted_down_on? @comment
+        @comment.undisliked_by current_user
+        #@comment.user.increase_stylepoints if @post.user != current_user
+        respond_to do |format|
+          format.html {redirect_to :back }
+          format.js { render 'unvote.js.erb' }
+        end
+      else
+        @comment.downvote_by current_user
+        #@comment.user.decrease_stylepoints if @post.user != current_user
+        respond_to do |format|
+          format.html {redirect_to :back }
+          format.js
+        end
+      end
   end
 
   private

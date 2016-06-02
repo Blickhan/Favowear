@@ -1,20 +1,41 @@
 <li id="comment-<%= comment.id %>">
-	<div class="comment_wrapper">
+	
+	<div class="voting">	
+		<span id="comment-<%= comment.id %>-score"><%= comment.cached_votes_score %></span>
+		<div class="btn-group-vertical">
+			<% active_css = logged_in? && current_user?(current_user) && current_user.voted_up_on?(comment) ? "active" : "" %>
+			<% use_ajax = logged_in? %>
+	    <%= link_to upvote_comment_path(comment), method: :put, remote: use_ajax, id: "upvote-comment-" + comment.id.to_s + "-button", class: "btn btn-sm btn-upvote #{active_css}" do %>
+	    	<i class="fa fa-arrow-up" aria-hidden="true"></i>
+	    <% end %>
+	    <% active_css = logged_in? && current_user?(current_user) && current_user.voted_down_on?(comment) ? "active" : "" %>
+	    <%= link_to downvote_comment_path(comment), method: :put, remote: use_ajax, id: "downvote-comment-" + comment.id.to_s + "-button", class: "btn btn-sm btn-downvote #{active_css}" do %>
+	    	<i class="fa fa-arrow-down" aria-hidden="true"></i>
+	    <% end %>
+	  </div>
+	</div>
+
+	<div class="comment_wrapper">		
+
+		<% if current_user?(comment.user) || (logged_in? && current_user.admin?)%>
+			<div title="delete comment?" class="btn-group delete-button">
+				<%= link_to comment, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-ominous btn-xs" do %>
+					<i class="fa fa-times" aria-hidden="true"></i>
+				<% end %>
+			</div>
+		<% end %>
+
+		
+
 		<div class="comment">
 			<% class_name = comment.user == comment.post.user ? "op_user" : "" %>
 			<span><%= link_to comment.user.username, comment.user, class: "#{class_name}" %> | <small><%= time_ago_in_words(comment.created_at) %></small></span>
-			<div class="row">
 			<p class="col-md-11"><%= comment.body %></p>
-			
-
-			<div class="btn-group col-md-1">
-				<% if current_user?(comment.user) || (logged_in? && current_user.admin?)%>
-					<%= link_to comment, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-ominous btn-xs" do %>
-						<i class="fa fa-times" aria-hidden="true"></i>
-					<% end %>
-				<% end %>
-			</div>
 		</div>
+
 	</div>
+
+
+
 </li>
 

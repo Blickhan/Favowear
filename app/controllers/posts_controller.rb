@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
 	def show
   	@post = Post.find(params[:id])
-    @comments = @post.comments.order(created_at: :desc).all
+    @comments = @post.comments.order(cached_votes_score: :desc).order(created_at: :desc).all
   end
 
 	def destroy

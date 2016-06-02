@@ -406,20 +406,36 @@ span.picture {
 
 /* comments */
 
+#comments{
+  margin-top: 40px; 
+}
 .comments {
   list-style: none;
-
+  .voting{
+    display: inline-block;
+  }
   .comment_wrapper{
+    display: inline-block;
     background-color: white;
     border: 1px solid $border-color;
     border-radius: 3px;
     padding: 10px;
+    position: relative;
     .op_user{
       color: #e68d0f;
+    }
+    .comment{
+    }
+    .delete-button{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1;
     }
   }
   li{
     padding: 2px;
+
   }
 }
 
@@ -454,28 +470,32 @@ span.picture {
 }
 
 .btn-upvote{
-  @include button-variant(#333, white, white);
+  @include button-variant(#333, transparent , transparent );
   &.active, &:focus, &:active, &:hover{
-    background-color: white;
+    background-color: transparent ;
     color: #00cc74;
     background-image: none;
     outline: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
-    border: 1px solid white;
+    border: 1px solid transparent ;
   }
 }
 
 .btn-downvote{
-  @include button-variant(#333, white, white);
+  @include button-variant(#333, transparent , transparent );
   &.active, &:focus, &:active, &:hover{
-    background-color: white;
+    background-color: transparent ;
     color: #d64843;
     background-image: none;
     outline: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
-    border: 1px solid white;
+    border: 1px solid transparent ;
   }
 }
+
+
+
+
 
