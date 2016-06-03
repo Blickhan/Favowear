@@ -14,7 +14,7 @@
     
     <div class="row">
 
-      <span class="voting col-md-4">
+      <span class="voting col-xs-4">
       	<div title="vote on this post" class="btn-group-vertical">
     	    <% active_css = logged_in? && current_user?(current_user) && current_user.voted_up_on?(post) ? "active" : "" %>
           <% use_ajax = logged_in? %>
@@ -29,12 +29,12 @@
         <span id="post-<%= post.id %>-score"><%= post.cached_votes_score %></span>
       </span>
 
-      <span class="category col-md-8"><%= link_to post.category.name, post.category, class: "pull-right" %></span><br>
+      <span class="category col-xs-8"><%= link_to post.category.name, post.category, class: "pull-right" %></span><br>
     </div>
 
     <div class="row">
-      <span class="comment_count col-md-6"><%= post.comments.count %> Comments</span>
-      <span class="buy_link col-md-6"><%= link_to "check it out", full_url(post.buy_link), target: '_blank', class: "pull-right" %></span>
+      <span class="comment_count col-xs-6"><%= post.comments.count %> Comments</span>
+      <span class="buy_link col-xs-6"><%= link_to "check it out", full_url(post.buy_link), target: '_blank', class: "pull-right" %></span>
     </div>
     
     <span class="post_footer">
