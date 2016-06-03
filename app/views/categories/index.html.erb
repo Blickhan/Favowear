@@ -3,9 +3,7 @@
 
 <div class="row">
 	<span class="col-md-7">
-		<% if logged_in? %>
-			<%= link_to "Create new Category", new_category_path, class: "btn btn-cool" %>
-		<% end %>
+		<%= link_to "Create new Category", new_category_path, class: "btn btn-cool" %>
 	</span>
 	<span id="order_dropdown" class="col-sm-2 pull-right">	
 	  <%= form_tag(fetch_categories_path, method: :get, remote: true, id: "order_categories_form") do %>

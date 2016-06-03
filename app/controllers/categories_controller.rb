@@ -55,14 +55,14 @@ class CategoriesController < ApplicationController
 	end
 
 	def show
-		@date_filter = session[:date_filter] || 1
+		@date_filter = session[:date_filter] || 5
   	#@category = Category.find_by(slug: params[:slug])
     @posts = @category.posts.all
     @posts = filter_by_date(@date_filter).paginate(page: params[:page], per_page: 32)
   end
 
   def all # acts as a pseudocategory
-    @date_filter = session[:date_filter] || 1
+    @date_filter = session[:date_filter] || 5
     @posts = Post.all
     @feed_items = filter_by_date(@date_filter).paginate(page: params[:page], per_page: 32)
     render 'all'

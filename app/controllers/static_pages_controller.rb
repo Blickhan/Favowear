@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
 
 
   def home
-    @date_filter = session[:date_filter] || 1
+    @date_filter = session[:date_filter] || 5
     @feed_items = filter_by_date(@date_filter).paginate(page: params[:page], per_page: 32)
   end
 
