@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
+      @comment.upvote_by current_user
       flash[:success] = "Comment created"
       redirect_to :back
       #respond_to do |format|

@@ -17,17 +17,17 @@
 	  <span id="post-<%= @post.id %>-score"><%= @post.cached_votes_score %></span>
 	</span>
 
-	<div class="image_link_show_page"><%= image_tag(full_url(@post.image_link)) %></div>
-
-	<span style="font-size:2em;"><%= link_to "check it out", full_url(@post.buy_link), target: '_blank' %></span>
-
 	<% if current_user?(@post.user) || (logged_in? && current_user.admin?) %>
-		<div class="btn-group pull-right">
+		<div class="btn-group pull-right" title="delete post?">
 			<%= link_to 'Delete', @post, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-ominous" %>
 		</div>
 	<% end %>
 
-	<div class="category" style="font-size:1.2em"><%= link_to @post.category.name, @post.category %></div>
+	<div class="image_link_show_page"><%= image_tag(full_url(@post.image_link)) %></div>
+
+	<span class="buy_link pull-right"><%= link_to "check it out", full_url(@post.buy_link), target: '_blank' %></span>
+
+	<span class="category"><%= link_to @post.category.name, @post.category %></span>
 </div>
 
 <div class="row">
@@ -47,10 +47,8 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-8 col-md-offset-2">
 		<div id="comments">
 				<%= render 'shared/comments' %>
 		</div>
-	</div>
 </div>
 

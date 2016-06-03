@@ -300,6 +300,9 @@ input {
     border-top: 1px solid $border-color;
     padding-top: 5px;
     .category{
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .comment_count{
     }
@@ -322,7 +325,8 @@ input {
   }
   .voting{
     display: block; 
-    padding-top: 5px; 
+    padding-top: 5px;
+
   }
   .buy_link {
     display: block;
@@ -368,6 +372,12 @@ input {
         border-radius: 3px;
       }  
   }
+  .buy_link{
+    font-size: 1.2em;
+  }
+  .category{
+    font-size: 1.2em;
+  }
 }
 
 #home_feed > i#loading_icon{
@@ -411,20 +421,25 @@ span.picture {
 }
 .comments {
   list-style: none;
-  .voting{
-    display: inline-block;
+  li{
+    width: 100%;
   }
   .comment_wrapper{
-    display: inline-block;
-    background-color: white;
-    border: 1px solid $border-color;
-    border-radius: 3px;
-    padding: 10px;
-    position: relative;
     .op_user{
       color: #e68d0f;
     }
-    .comment{
+    .comment-body{
+      background-color: white;
+      border: 1px solid $border-color;
+      border-radius: 3px;
+      padding: 10px;
+    }
+    .voting-wrapper{
+      padding-right: 0;
+      .voting{
+        height: 100%;
+        vertical-align: middle;
+      }
     }
     .delete-button{
       position: absolute;
