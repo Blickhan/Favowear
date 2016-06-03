@@ -69,7 +69,7 @@ class StaticPagesController < ApplicationController
         when '4' #year
           @feed_items.where(:created_at => 365.day.ago..Time.now)
         when '5' #all time
-          @feed_items
+          @feed_items.all
         when '6' #newest
           @feed_items.reorder('created_at DESC')
         else

@@ -129,7 +129,7 @@ class CategoriesController < ApplicationController
         when '4' #year
           @posts.where(:created_at => 365.day.ago..Time.now)
         when '5' #all time
-          @posts
+          @posts.all
         when '6' #newest
           @posts.reorder('created_at DESC')
         else
