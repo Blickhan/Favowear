@@ -7,17 +7,17 @@
       </small>
     </p>
     <%= f.label "link to image" %>
-    <%= f.text_field :image_link, placeholder: "Link to an image..." %>
+    <%= f.text_field :image_link, placeholder: "Link to an image...", class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label "link to store" %>
-    <%= f.text_field :buy_link, placeholder: "Link to where I can buy this..." %>
+    <%= f.text_field :buy_link, placeholder: "Link to where I can buy this...", class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label "category" %>
     <%= #f.select :category_id, options_from_collection_for_select(@categories,'id', 'name'), :prompt => "Select one" 
     %>
-    <input id="select_category" placeholder="Which category does this belong to..."/>
+    <input id="select_category" , class="form-control" placeholder="Which category does this belong to..."/>
     <input id="post_category_id" name="post[category_id]" type="hidden"/>
   </div>
   <%= f.submit "Post", class: "btn btn-cool" %>
