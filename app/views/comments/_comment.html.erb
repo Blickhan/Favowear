@@ -2,7 +2,7 @@
 	
 	<div class="comment_wrapper row">	
 
-		<div class="col-md-2 voting-wrapper">
+		<div class="voting-wrapper col-xs-2">
 			<div class="voting pull-right">	
 				<span id="comment-<%= comment.id %>-score"><%= comment.cached_votes_score %></span>
 				<span class="btn-group-vertical">
@@ -19,7 +19,7 @@
 			</div>
 		</div>
 
-		<div class="comment-body col-md-9">
+		<div class="comment-body col-xs-9">
 
 			<% if current_user?(comment.user) || (logged_in? && current_user.admin?)%>
 				<div title="delete comment?" class="btn-group delete-button">
