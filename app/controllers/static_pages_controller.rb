@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
 
 
   def home
-    @date_filter = session[:date_filter] || 5
+    @date_filter = session[:date_filter] || '5'
     @feed_items = filter_by_date(@date_filter).paginate(page: params[:page], per_page: 32)
   end
 
@@ -69,7 +69,7 @@ class StaticPagesController < ApplicationController
         when '4' #year
           @feed_items.where(:created_at => 365.day.ago..Time.now)
         when '5' #all time
-          @feed_items.all
+          @feed_items
         when '6' #newest
           @feed_items.reorder('created_at DESC')
         else

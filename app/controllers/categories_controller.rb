@@ -39,7 +39,7 @@ class CategoriesController < ApplicationController
 	end
 
 	def index
-    @category_order = session[:category_order] || 1
+    @category_order = session[:category_order] || '1'
     if params[:term]
       @categories = Category.where('lower(name) like ?', "%#{params[:term].downcase}%")
     else
@@ -55,14 +55,14 @@ class CategoriesController < ApplicationController
 	end
 
 	def show
-		@date_filter = session[:date_filter] || 5
+		@date_filter = session[:date_filter] || '5'
   	#@category = Category.find_by(slug: params[:slug])
     @posts = @category.posts.all
     @posts = filter_by_date(@date_filter).paginate(page: params[:page], per_page: 32)
   end
 
   def all # acts as a pseudocategory
-    @date_filter = session[:date_filter] || 5
+    @date_filter = session[:date_filter] || '5'
     @posts = Post.all
     @feed_items = filter_by_date(@date_filter).paginate(page: params[:page], per_page: 32)
     render 'all'
@@ -129,7 +129,7 @@ class CategoriesController < ApplicationController
         when '4' #year
           @posts.where(:created_at => 365.day.ago..Time.now)
         when '5' #all time
-          @posts.all
+          @posts
         when '6' #newest
           @posts.reorder('created_at DESC')
         else
