@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   validates :buy_link, presence: true, length: { maximum: 2048 }
 
   def self.highest_score
-  	self.order(:cached_votes_score => :desc)	
+  	self.order(:cached_votes_score => :desc).order(:created_at => :desc)	
   end
 
   def self.search(search)
