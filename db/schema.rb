@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160602025033) do
   end
 
   add_index "followings", ["category_id"], name: "index_followings_on_category_id"
+  add_index "followings", ["user_id", "category_id"], name: "index_followings_on_user_id_and_category_id", unique: true
   add_index "followings", ["user_id"], name: "index_followings_on_user_id"
 
   create_table "posts", force: :cascade do |t|
