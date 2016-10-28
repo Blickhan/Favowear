@@ -8,7 +8,7 @@
       </div>
     <% end %>
     <div class="post-image-container">
-    <div class="image_link"><%= link_to image_tag(full_url(post.image_link)), post %></div>
+    <div class="image_link"><%= link_to image_tag(full_url(post.image_link)), full_url(post.buy_link), target: '_blank' %></div>
     </div>
     <div class="post-details-container">
     
@@ -33,8 +33,7 @@
     </div>
 
     <div class="row">
-      <span class="comment_count col-xs-6"><%= post.comments.count %> Comments</span>
-      <span class="buy_link col-xs-6"><%= link_to "check it out", full_url(post.buy_link), target: '_blank', class: "pull-right" %></span>
+      <span class="comment_count col-xs-6"><%= link_to "#{post.comments.count} Comments", post %></span>
     </div>
     
     <span class="post_footer">
